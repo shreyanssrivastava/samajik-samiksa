@@ -1,0 +1,18 @@
+{
+  "routes": [
+    { "src": "^/api/(.*)", "dest": "/api/$1" },
+  
+    { "src": "^/(robots\\.txt|sitemap\\.xml)$", "dest": "/$1" },
+    
+    { "src": "^/$", "dest": "/client/index.html" },
+    
+    { "src": "^/(.*)\\.html$", "status": 301, "headers": { "Location": "/$1" } },
+    
+    { "src": "^/([^\\.]+)$", "dest": "/client/$1.html" },
+    
+    { "src": "^/(.*)$", "dest": "/client/$1" },
+
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/client/404.html" }
+  ]
+}
