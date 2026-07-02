@@ -144,18 +144,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const pfEmailCheck = document.getElementById('pf-email-check');
 
 
-  document.getElementById("google-btn").addEventListener("click", (e) => {
+  document.getElementById("google-btn").addEventListener("click", async () => {
+    try {
       toast.promise("Processing...");
-      signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log(result);
-        toast.success("Login successful");
-        window.location.replace('/');
-      })
-      .catch((error) => {
+      const result = await signInWithPopup(auth, provider);
+      console.log(result);
+      const token = await result.user.getIdToken();
+      await fetch("https://samajiksamiksa.vercel.app/api/auth", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Login successful");
+      // window.location.replace('/');
+    } catch (error) {
         console.error(error);
         toast.error(error);
-      });
+    }
   });
 
   const checkUser = onAuthStateChanged(auth, (user) => {
