@@ -3,8 +3,8 @@
     { "src": "^/api/(.*)", "dest": "/api/$1" },
 
     { "src": "^/(robots\\.txt|sitemap\\.xml)$", "dest": "/$1" },
-
-    { "src": "^/admin/$", "dest": "/admin/index.html" },
+ 
+    { "src": "^/admin/?(index)?(\\.html)?$", "dest": "/api/midware" },
     { "src": "^/admin/(.*)\\.html$", "status": 301, "headers": { "Location": "/admin/$1" } },
     { "src": "^/admin/([^\\.]+)$", "dest": "/admin/$1.html" },
     { "src": "^/admin/(.*)$", "dest": "/admin/$1" },
