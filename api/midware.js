@@ -14,11 +14,11 @@ if (!admin.apps.length) {
 
 export default async function handler(req, res) {
   
-  function rewrite(folder, file) {
+  function rewrite(folder, file, code = 400) {
       const dest = path.join(process.cwd(), folder, file);
       const data = fs.readFileSync(dest);
       res.setHeader("Content-Type", "text/html");
-      return res.send(data);
+      return res.status(code).send(data);
   }
   
   try {
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
         return rewrite("client", "404.html");
     }
     
-    return rewrite("admin", "index.html");
+    return rewrite("admin", "index.html", 200);
   
   } catch (error) {
       console.log(error.message);
