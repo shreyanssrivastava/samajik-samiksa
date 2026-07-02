@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const decodedToken = await admin.auth().verifyIdToken(token);
     
     if (decodedToken.uid !== process.env.SAM_ADMIN_UID) {
-        return res.status(403).json({ error: "Forbidden " + decodedToken });
+        return res.status(403).json({ error: `Forbidden. UID: ${decodedToken.uid}`, });
     }
     
     const expiresIn = 30 * 24 * 60 * 60 * 1000;
@@ -41,6 +41,6 @@ export default async function handler(req, res) {
     res.status(200).json({ success: true });
     
   } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ error: error.message });
   }  
 }
