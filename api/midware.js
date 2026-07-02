@@ -15,7 +15,7 @@ if (!admin.apps.length) {
 export default async function handler(req, res) {
   
   function rewrite(folder, file) {
-      return res.sendFile(path.join(process.cwd(), folder, file));
+      return res.sendfile(path.join(process.cwd(), folder, file));
   }
   
   try {
