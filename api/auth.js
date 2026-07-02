@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const decodedToken = await admin.auth().verifyIdToken(token);
     
     if (decodedToken.uid !== process.env.SAM_ADMIN_UID) {
-        return res.status(403).json({ error: "Forbidden" });
+        return res.status(403).json({ error: "Forbidden " + decodedToken });
     }
     
     const expiresIn = 30 * 24 * 60 * 60 * 1000;
