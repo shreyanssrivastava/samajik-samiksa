@@ -29,13 +29,13 @@ export default async function handler(req, res) {
         return res.status(403).json({ error: `Forbidden. UID: ${decodedToken.uid}`, });
     }
     
-    const expiresIn = 30 * 24 * 60 * 60 * 1000;
+    const expiresIn = 14 * 24 * 60 * 60 * 1000;
     const sessionCookie = await admin.auth().createSessionCookie(token, { expiresIn });
     const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
 
     res.setHeader(
         "Set-Cookie",
-        `session=${sessionCookie}; HttpOnly${secure}; SameSite=Strict; Max-Age=${30 * 24 * 60 * 60}; Path=/`
+        `session=${sessionCookie}; HttpOnly${secure}; SameSite=Strict; Max-Age=${expiresIn / 1000}; Path=/`
     );
     
     res.status(200).json({ success: true });
