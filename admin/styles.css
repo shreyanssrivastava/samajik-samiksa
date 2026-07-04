@@ -103,20 +103,20 @@ img {
   height: 3.5rem;
   pointer-events: none;
 }
-#login {
+#logout {
   display: flex;
-  color: #090909;
+  color: #fff;
   padding: .5rem .8rem;
   gap: .8rem;
   font-size: 1rem;
   margin-right: .7rem;
   align-items: center;
-  background: #fff;
+  background: rgba(255,128,128,0.8);
   border: .05rem solid #fff;
   transition: all .5s ease;
 }
-#login:hover {
-  color: #ffffff;
+#logout:hover {
+  color: #ff8080;
   background: transparent;
 }
 @media (max-width: 999px) {

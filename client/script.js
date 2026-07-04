@@ -1,12 +1,10 @@
               /*---- Porting ----*/
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+  import { auth, db, provider } from "./lib/fbClient.js";
   import {
-    getAuth,
     signOut,
     updateProfile,
     applyActionCode,
     onAuthStateChanged,
-    GoogleAuthProvider,
     signInWithPopup,
     confirmPasswordReset,
     sendPasswordResetEmail,
@@ -22,29 +20,12 @@
     signInWithPhoneNumber,
     RecaptchaVerifier } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
   import {
-    getFirestore,
     doc, addDoc, setDoc, getDoc, getDocs,
-    query, where,
-    collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    query, where, collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-
+ 
   let isUser = false;
-  
-  const firebaseConfig = {
-      apiKey: "AIzaSyDi6L48fd9oHWX4SOqWn6Rz0qggWFd1bK4",
-      authDomain: "samajik-samiksa.firebaseapp.com",
-      projectId: "samajik-samiksa",
-      storageBucket: "samajik-samiksa.firebasestorage.app",
-      messagingSenderId: "708185280377",
-      appId: "1:708185280377:web:66beafb863ffba4e0829a8",
-      measurementId: "G-RXV82S704G"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const provider = new GoogleAuthProvider()  
 
   auth.languageCode = "en";
   provider.setCustomParameters({ hl: "en" });
@@ -150,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await signInWithPopup(auth, provider);
       console.log(result);
       const token = await result.user.getIdToken();
-      await fetch("https://samajiksamiksa.vercel.app/api/auth", {
+      await fetch("/api/auth", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -208,7 +189,5 @@ document.addEventListener('DOMContentLoaded', () => {
           toast.error(error);
       });
     });
-
-
 
 });

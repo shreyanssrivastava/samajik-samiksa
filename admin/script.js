@@ -1,30 +1,14 @@
-              /*---- Porting ----*/ 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+               /*---- Porting ----*/ 
+  import { auth, db } from "../lib/fbClient.js";
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
  
   import {
-    getFirestore,
     doc, addDoc, setDoc, getDoc, getDocs,
-    query, where,
-    collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    query, where, collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
   let isUser = false;
-  
-  const firebaseConfig = {
-      apiKey: "AIzaSyDi6L48fd9oHWX4SOqWn6Rz0qggWFd1bK4",
-      authDomain: "samajik-samiksa.firebaseapp.com",
-      projectId: "samajik-samiksa",
-      storageBucket: "samajik-samiksa.firebasestorage.app",
-      messagingSenderId: "708185280377",
-      appId: "1:708185280377:web:66beafb863ffba4e0829a8",
-      measurementId: "G-RXV82S704G"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
 
   const checkUser = onAuthStateChanged(auth, (user) => {
      if (user) {
@@ -108,6 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   };
   
+  const logOutBtn = document.getElementById('logout');    
+  logOutBtn.addEventListener("click", async () => {
+    try {
+      toast.promise("Processing...");
+      await fetch("/api/killAdmin", { method: "POST" });
+      await signOut(auth);
+      toast.success("Logging out...")
+      location.replace('/');
+    } catch (error) {
+        console.log(error);
+        toast.error(error);
+    }
+  });
+  
 
 /*
                 ---- Sign In/Up ----
@@ -146,21 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(error);
         toast.error(error);
       });
-  });  
-  
-    const logOutBtn = document.getElementById('logout-btn');    
-    logOutBtn.addEventListener("click", () => {
-      signOut(auth)
-      .then(() => {
-          toast.success("Logging out...")
-          location.replace('/');
-      })
-      .catch((error) => {
-          console.log(error);
-          toast.error(error);
-      });
-    });
-
+  });
 */
 
 
