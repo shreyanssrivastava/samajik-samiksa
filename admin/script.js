@@ -96,16 +96,106 @@ document.addEventListener('DOMContentLoaded', () => {
   logOutBtn.addEventListener("click", async () => {
     try {
       toast.promise("Processing...");
-      await fetch("/api/killAdmin", { method: "POST" });
-      await signOut(auth);
-      toast.success("Logging out...")
-      location.replace('/');
+      const res = await fetch("/api/killAdmin", { method: "POST" });
+      if (res.ok) {
+        await signOut(auth);
+        toast.success("Logging out...")
+        location.replace('/');
+      } else {
+          toast.error("Something went wrong");
+      }
     } catch (error) {
         console.log(error);
         toast.error(error);
     }
   });
   
+  const docxInp = document.getElementById("docx-file");
+  const btn = document.getElementById("upload-docx");
+  
+  docxInp.addEventListener("change", () => {
+
+    const file = docxInp.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+
+    reader.onload = async function(e) {
+      try {
+        const arrayBuffer = e.target.result;
+        const result = await mammoth.convertToHtml(
+          { arrayBuffer },
+          {
+            convertImage: mammoth.images.imgElement(async function(image) {
+                const base64 = await image.read("base64");
+                const formData = new FormData();
+                formData.append("key", "d8e4ccd142ddf84767dac0474af959ea"); // Replace with your Imgbb API Key
+                formData.append("image", base64);
+              try {
+                const response = await fetch("https://api.imgbb.com/1/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();                  
+                return { src: data.data.url };
+              } catch (err) {
+                  console.error(err);
+              }
+            })
+          }
+        );
+
+        console.log(result.value);
+        pv.innerHTML = result.value;
+      
+      } catch (err) {
+          console.error(err);
+      }     
+    }
+    
+    reader.readAsArrayBuffer(file);    
+  });
+  
+  async function showRes() {
+    try {
+    const item = await getDoc(doc(db, "articles", "issue-001"));
+    const result = await item.data().G;
+  
+  const parser = new DOMParser();
+  const main = parser.parseFromString(result, "text/html");
+
+  const paragraphs = [...main.querySelectorAll("p")];
+
+  const journal = paragraphs[0]?.textContent.trim();
+  const issue = paragraphs[1]?.textContent.trim();
+  const title = paragraphs[2]?.textContent.trim();
+  const author = paragraphs[3]?.textContent.trim();
+
+  paragraphs.slice(0, 4).forEach(p => p.remove());
+
+  const articleHTML = main.body.innerHTML;
+  
+  alert(articleHTML);
+  alert(journal + " " + issue + " " + title + " " + author);
+    /*
+  await setDoc(doc(db, "articles", "issue-001"), {
+      a: journal,
+      b: issue,
+      c: title,
+      d: author,
+      e: articleHTML
+  });
+  */
+  
+  } catch (err) {
+      alert(err);
+  }
+  
+  }
+  
+  showRes();
+
 
 /*
                 ---- Sign In/Up ----
