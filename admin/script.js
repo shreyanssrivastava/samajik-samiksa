@@ -110,13 +110,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
+  let content = null;
   const docxInp = document.getElementById("docx-file");
-  const btn = document.getElementById("upload-docx");
+  const upBtn = document.getElementById("upload-docx");
+  const slugInp = document.getElementById("inp_slug");  
+  const publishBtn = document.getElementById("publish-btn");
+  
+  upBtn.addEventListener("click", () => {
+    docxInp.click();
+  });
   
   docxInp.addEventListener("change", () => {
-
+    toast.promise("Processing...");
     const file = docxInp.files[0];
-    if (!file) return;
+    if (!file) {
+      toast.error("File not found");
+      return;
+    }
     
     const reader = new FileReader();
 
@@ -141,60 +151,76 @@ document.addEventListener('DOMContentLoaded', () => {
                 return { src: data.data.url };
               } catch (err) {
                   console.error(err);
+                  toast.error(err);
               }
             })
           }
         );
 
-        console.log(result.value);
-        pv.innerHTML = result.value;
+        content = result.value;
+        toast.success("Successfully uploaded");
       
       } catch (err) {
           console.error(err);
+          toast.error(err);
       }     
     }
     
     reader.readAsArrayBuffer(file);    
   });
   
-  async function showRes() {
-    try {
-    const item = await getDoc(doc(db, "articles", "issue-001"));
-    const result = await item.data().G;
-  
-  const parser = new DOMParser();
-  const main = parser.parseFromString(result, "text/html");
-
-  const paragraphs = [...main.querySelectorAll("p")];
-
-  const journal = paragraphs[0]?.textContent.trim();
-  const issue = paragraphs[1]?.textContent.trim();
-  const title = paragraphs[2]?.textContent.trim();
-  const author = paragraphs[3]?.textContent.trim();
-
-  paragraphs.slice(0, 4).forEach(p => p.remove());
-
-  const articleHTML = main.body.innerHTML;
-  
-  alert(articleHTML);
-  alert(journal + " " + issue + " " + title + " " + author);
-    /*
-  await setDoc(doc(db, "articles", "issue-001"), {
-      a: journal,
-      b: issue,
-      c: title,
-      d: author,
-      e: articleHTML
+  slugInp.addEventListener("input", function () {
+    this.value = this.value.toLowerCase().replace(/\s+/g, "-");
   });
-  */
   
-  } catch (err) {
-      alert(err);
+  publishBtn.addEventListener("click", () => {
+    if (!content || !slugInp.value) {
+      toast.error("Something went wrong");
+      return;
+    }
+    toast.promise("Processing...");
+    publishContent();
+  });
+  
+  async function publishContent() {
+  
+    try {
+    
+      const parser = new DOMParser();
+      const data = parser.parseFromString(content, "text/html");
+
+      const paragraphs = [...data.querySelectorAll("p")];
+
+   //   const samiksa = paragraphs[0]?.textContent.trim();
+   //   const scrutiny = paragraphs[1]?.textContent.trim();
+      const desc = paragraphs[2]?.textContent.trim();
+      const title = paragraphs[3]?.textContent.trim();
+      const lastP = paragraphs.at(-1)?.textContent.trim();
+      
+      paragraphs.slice(0, 4).forEach(p => p.remove());
+
+      const author = lastP.slice(2).trim();      
+      const bodyHTML = data.body.innerHTML;
+
+      const docName = "issue-" + desc.match(/\d+/)[0].padStart(3, "0");      
+      
+      await setDoc(doc(db, "articles", docName), {
+        slug: slugInp.value,
+        title: title,
+        desc: desc,
+        author: author,
+        body: bodyHTML
+      });
+      
+      toast.success("Successfully published");
+  
+  
+    } catch (err) {
+        console.log(err);
+        toast.error(err);
+    }
+  
   }
-  
-  }
-  
-  showRes();
 
 
 /*
