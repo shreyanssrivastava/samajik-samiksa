@@ -304,6 +304,10 @@ input {
   background: transparent;
   border: .1rem solid #fff;
 }
+#open-article {
+  display: none;
+  color: white;
+}
 
 
 

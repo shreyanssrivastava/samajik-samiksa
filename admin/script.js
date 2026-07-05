@@ -115,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const upBtn = document.getElementById("upload-docx");
   const slugInp = document.getElementById("inp_slug");  
   const publishBtn = document.getElementById("publish-btn");
-  
+  const openArticle = document.getElementById("open-article");
+
   upBtn.addEventListener("click", () => {
     docxInp.click();
   });
@@ -212,6 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
         body: bodyHTML
       });
       
+      openArticle.href = `/articles/${slugInp.value}`;
+      openArticle.textContent = `samajiksamiksa.vercel.app/articles/${slugInp.value}`;
+      openArticle.style.display = "block";
+      slugInp.value = "";
       toast.success("Successfully published");
   
   
