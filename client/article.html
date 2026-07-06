@@ -4,9 +4,15 @@
    <meta charset="UTF-8"> 
    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-   <meta name="google-site-verification" content="9v1nY0WGYTZccVpDFyzPraYNpjEx4NKaApGkR2VEMOo" />
    <meta name="theme-color" content="#000000">
-   <title>SAMAJIK SAMĪKṢĀ | Articles</title>
+   <title>{{TITLE}}</title>
+   <meta name="description" content="{{DESCRIPTION}}">
+   <meta property="og:title" content="{{TITLE}}">
+   <meta property="og:description" content="{{DESCRIPTION}}">
+   <meta property="og:image" content="https://i.ibb.co/sJMNwJy9/samajik-samiksa.png">
+   <meta property="og:url" content="{{URL}}">
+   <meta property="og:type" content="article">
+   <meta name="author" content="{{AUTHOR}}">
    <link rel="icon" href="/assets/icon.png" type="image/png">
    <link rel="shortcut icon" href="/assets/icon.png" type="image/png">
    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -18,11 +24,11 @@
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Source+Serif+4:wght@400;500;600&family=Fredoka:wght@300..700&family=Rubik+Scribble&family=Rubik+Wet+Paint&family=Slabo+27px&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-   <link rel="stylesheet" href="/articles.css">
+   <link rel="stylesheet" href="/article.css">
    <script src="https://kit.fontawesome.com/2e39ca5f52.js" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-   <script type="module" src="/articles.js"></script>
+   <script type="module" src="/artile.js"></script>
    <script src="/pwa.js"></script>
   </head>
   <body>
@@ -44,13 +50,13 @@
 -->
    <section class="sec-one">
     <div class="article">
-     <h1 id="art-title"></h1>
-     <h3 id="art-desc"></h3>
+     <h1 id="art-title">{{TITLE}}</h1>
+     <h3 id="art-desc">{{DESCRIPTION}}</h3>
      <div class="author-box">
-       <img id="author-img" src="" alt="author">
-       <span id="author-name"></span>
+       <img id="author-img" src="/assets/circle_logo.png" alt="author">
+       <span id="author-name">{{AUTHOR}}</span>
      </div>
-     <article id="art-body"></article>
+     <article id="art-body">{{BODY}}</article>
 
         
 <!--         

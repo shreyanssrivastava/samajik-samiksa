@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }; 
   
-  toast.promise("Processing...");
+//  toast.promise("Processing...");
    
   let lastScroll = 0;
 
@@ -108,7 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lastScroll = current;
   });
-  
+
+/*  
   const slug = window.location.pathname.split("/").pop(); 
   const artTitle = document.getElementById("art-title");  
   const artDesc = document.getElementById("art-desc");
@@ -134,6 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   show();
-  
+*/
 
 });
