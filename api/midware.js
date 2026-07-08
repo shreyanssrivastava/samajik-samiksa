@@ -4,6 +4,8 @@ import admin from "../lib/fbAdmin.js";
 
 export default async function handler(req, res) {
   
+  if (req.url.split("/")[1] !== "admin") return res.status(405).json({ error: "Unable to process" });
+  
   function rewrite(folder, file, code = 400) {
       const dest = path.join(process.cwd(), folder, file);
       const data = fs.readFileSync(dest);

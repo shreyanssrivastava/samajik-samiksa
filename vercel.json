@@ -1,22 +1,25 @@
 {
   "routes": [
-    { "src": "^/api/(.*)", "dest": "/api/$1" },    
-    { "src": "^/lib/fbClient\\.js$", "dest": "/lib/fbClient.js" },    
-    { "src": "^/(robots\\.txt|sitemap\\.xml)$", "dest": "/$1" },
+      { "src": "^/api/(.*)", "dest": "/api/$1" },    
+      { "src": "^/lib/fbClient\\.js$", "dest": "/lib/fbClient.js" },    
+      { "src": "^/(robots\\.txt|sitemap\\.xml)$", "dest": "/$1" },
  
-    { "src": "^/admin/?(index)?(\\.html)?$", "dest": "/api/midware" },
-    { "src": "^/admin/(.*)\\.html$", "status": 301, "headers": { "Location": "/admin/$1" } },
-    { "src": "^/admin/([^\\.]+)$", "dest": "/admin/$1.html" },
-    { "src": "^/admin/(.*)$", "dest": "/admin/$1" },
+      { "src": "^/admin/?(index)?(\\.html)?$", "dest": "/api/midware" },
+      { "src": "^/admin/(.*)\\.html$", "status": 301, "headers": { "Location": "/admin/$1" } },
+      { "src": "^/admin/([^\\.]+)$", "dest": "/admin/$1.html" },
+      { "src": "^/admin/(.*)$", "dest": "/admin/$1" },
 
-    { "src": "^/articles/([^\\./]+)$", "dest": "/api/getArt" },
+      { "src": "^/articles/([^\\./]+)$", "dest": "/api/getArt" },
 
-    { "src": "^/$", "dest": "/client/index.html" },
-    { "src": "^/(.*)\\.html$", "status": 301, "headers": { "Location": "/$1" } },
-    { "src": "^/([^\\.]+)$", "dest": "/client/$1.html" },
-    { "src": "^/(.*)$", "dest": "/client/$1" },
+      { "src": "^/$", "dest": "/client/index.html" },
+      { "src": "^/(.*)\\.html$", "status": 301, "headers": { "Location": "/$1" } },
+      { "src": "^/([^\\.]+)$", "dest": "/client/$1.html" },
+      { "src": "^/(.*)$", "dest": "/client/$1" },
 
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/client/404.html" }
+      { "handle": "filesystem" },
+      { "src": "/(.*)", "status": 404, "dest": "/client/404.html" }
+  ],
+  "crons": [
+      { "path": "/api/sendNews", "schedule": "30 2 * * 0" }
   ]
 }

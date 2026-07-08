@@ -171,8 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   slugInp.addEventListener("input", function () {
-    this.value = this.value.toLowerCase().replace(/\s+/g, "-");
+    this.value = this.value.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "").replace(/-+/g, "-");
   });
+
+  slugInp.addEventListener("blur", function () {
+    this.value = this.value.replace(/^-|-$/g, "");
+  });
+  
   
   publishBtn.addEventListener("click", () => {
     if (!content || !slugInp.value) {
@@ -182,6 +187,27 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.promise("Processing...");
     publishContent();
   });
+
+/*
+// How to get next sunday 
+
+const d = new Date();
+
+const nextSunday = new Date(d);
+
+nextSunday.setDate(d.getDate() + ((7 - d.getDay()) % 7 || 7));
+
+nextSunday.setHours(8, 0, 0, 0);
+
+console.log(nextSunday.toISOString()); // for utc
+console.log(nextSunday.toLocaleString("en-IN")); //for ind
+
+const a = nextSunday.toLocaleString("en-IN").toUpperCase();
+
+console.log("SUNDAY,", a); // to show on UI
+
+*/
+
   
   async function publishContent() {
   

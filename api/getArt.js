@@ -6,6 +6,9 @@ export default async function handler(req, res) {
 
   let data = null;
   const url = new URL(req.url, `https://${req.headers.host}`);
+  
+  if (url.pathname.split("/")[1] !== "articles") return res.status(405).json({ error: "Unable to process" });
+  
   const slug = url.pathname.split("/").pop();
   
   function readFile(folder, file) {
@@ -15,7 +18,11 @@ export default async function handler(req, res) {
 
   try {
     
-    const snap = await db.collection("articles").where("slug", "==", slug).limit(1).get();
+    const snap = await db
+    .collection("articles")
+    .where("slug", "==", slug)
+    .where("status", "==", "published")
+    .limit(1).get();
 
     if (snap.empty) {
         data = readFile("client", "404.html");
