@@ -20,6 +20,6 @@
       { "src": "/(.*)", "status": 404, "dest": "/client/404.html" }
   ],
   "crons": [
-      { "path": "/api/sendNews", "schedule": "30 2 * * 0" }
+      { "path": "/api/sendNews", "schedule": "45 8 9 7 *" }
   ]
 }
