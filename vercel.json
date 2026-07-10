@@ -9,6 +9,8 @@
       { "src": "^/admin/([^\\.]+)$", "dest": "/admin/$1.html" },
       { "src": "^/admin/(.*)$", "dest": "/admin/$1" },
 
+      { "src": "^/article\\.html$", "status": 301, "headers": { "Location": "/article" } },            
+      { "src": "^/article/?$", "dest": "/client/articles.html" },
       { "src": "^/articles/([^\\./]+)$", "dest": "/api/getArt" },
 
       { "src": "^/$", "dest": "/client/index.html" },

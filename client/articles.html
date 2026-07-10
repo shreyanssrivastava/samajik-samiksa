@@ -6,11 +6,18 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
    <meta name="google-site-verification" content="9v1nY0WGYTZccVpDFyzPraYNpjEx4NKaApGkR2VEMOo" />
    <meta name="theme-color" content="#000000">
-   <title>SAMAJIK SAMĪKṢĀ | Admin Panel</title>
+   <title>Articles - Samajik Samīkṣā (The Social Scrutiny)</title>
+   <meta name="description" content="A Journal of Society, Ideas & Critical Reflections">
+   <meta property="og:title" content="SAMAJIK SAMĪKṢĀ | The Social Scrutiny">
+   <meta property="og:description" content="A Journal of Society, Ideas & Critical Reflections">
+   <meta property="og:image" content="https://samajiksamiksa.vercel.app/assets/og-img.png">
+   <meta property="og:url" content="https://samajiksamiksa.vercel.app/">
+   <meta property="og:type" content="website">
    <link rel="icon" href="/assets/icon.png" type="image/png">
    <link rel="shortcut icon" href="/assets/icon.png" type="image/png">
    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
    <link rel="manifest" href="/site.webmanifest">
+   <link rel="canonical" href="https://samajiksamiksa.vercel.app/articles">
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"> 
@@ -18,12 +25,12 @@
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fredoka:wght@300..700&family=Rubik+Scribble&family=Rubik+Wet+Paint&family=Slabo+27px&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-   <link rel="stylesheet" href="/admin/styles.css">
+   <link rel="stylesheet" href="/articles.css">
    <script src="https://kit.fontawesome.com/2e39ca5f52.js" crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.11.0/mammoth.browser.min.js"></script>
+   <script src="https://accounts.google.com/gsi/client" async defer></script>
    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-   <script type="module" src="/admin/script.js"></script>
+   <script type="module" src="/articles.js"></script>
    <script src="/pwa.js"></script>
   </head>
   <body>
@@ -32,22 +39,14 @@
      <div class="logo-box">
        <img id="logo" src="/assets/logo.png" alt="logo">
      </div>
-     <div id="logout">
-       <span>Logout</span>
-     </div>
-   </nav> 
+   </nav>
+           <!---- main-body ---->
    <section class="wrapper">
-    <h3 class="admin-line">ADMIN DASHBOARD</h3>
-    <div class="article">
-     <span class="art-text">Article <i class="fa-solid fa-arrow-right-long"></i></span>
-     <input type="file" id="docx-file" accept=".docx">
-     <button id="upload-docx">UPLOAD DOCX</button>
-     <input id="inp_slug" type="text" placeholder="/path-for-this-article">
-     <button id="publish-btn">Final Publish</button>
-     <a id="open-article" href=""></a>
-    </div>
+     <div id="articles">
+      <h1>ARTICLES</h1>
+     </div>
+     <button id="explore-btn">Explore More<span id="exp-btn-icon" class="fa-solid fa-arrow-right-long"></span></button>
+     <p id="end-text" class="hide">End of the Archive</p>
    </section>
-   
-      
   </body>
 </html>

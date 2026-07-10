@@ -31,6 +31,32 @@ document.addEventListener('DOMContentLoaded', () => {
   provider.setCustomParameters({ hl: "en" });
 
 
+            /*---- page-navigation ----*/
+  const home = document.getElementById('home');
+  const enote = document.getElementById('enote');
+  const article = document.getElementById('article');
+  const paper = document.getElementById('paper');
+  const about = document.getElementById('about');
+  const connect = document.getElementById('connect');
+
+  home.addEventListener('click', () => {
+    location.reload();
+  });
+  enote.addEventListener('click', () => {
+    window.location.href = "/enote";
+  });
+  article.addEventListener('click', () => {
+    window.location.href = "/articles";
+  });
+  paper.addEventListener('click', () => {
+    window.location.href = "/cu.html";
+  });
+  about.addEventListener('click', () => {
+    window.location.href = "/cu.html";
+  });
+  connect.addEventListener('click', () => {
+    window.location.href = "/cu.html";
+  });
 
             /*---- create-toast ----*/
   let snack = null;

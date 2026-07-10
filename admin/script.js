@@ -216,16 +216,23 @@ console.log("SUNDAY,", a); // to show on UI
       const parser = new DOMParser();
       const data = parser.parseFromString(content, "text/html");
 
-      const paragraphs = [...data.querySelectorAll("p")];
+      const para = [...data.querySelectorAll("p")];
 
-   //   const samiksa = paragraphs[0]?.textContent.trim();
-   //   const scrutiny = paragraphs[1]?.textContent.trim();
-      const desc = paragraphs[2]?.textContent.trim();
-      const title = paragraphs[3]?.textContent.trim();
-      const lastP = paragraphs.at(-1)?.textContent.trim();
+   //   const samiksa = para[0]?.textContent.trim();
+   //   const scrutiny = para[1]?.textContent.trim();
+      const desc = para[2]?.textContent.trim();
+      const title = para[3]?.textContent.trim();
+      const lastP = para.at(-1)?.textContent.trim();
       
-      paragraphs.slice(0, 4).forEach(p => p.remove());
-
+      para.slice(0, 4).forEach(p => p.remove());
+    
+      const bodyText = data.body.textContent || "";
+      const exactWords = text.trim().split(/\s+/).filter(Boolean).length;
+      const approxWords = (count) => {
+        const rem = count % 100;
+        return rem === 50 ? count : rem < 50 ? count - rem : count + (100 - rem);
+      };
+      const words = approxWords(exactWords);
       const author = lastP.slice(2).trim();      
       const bodyHTML = data.body.innerHTML;
 
@@ -235,6 +242,7 @@ console.log("SUNDAY,", a); // to show on UI
         slug: slugInp.value,
         title: title,
         desc: desc,
+        words: words,
         author: author,
         body: bodyHTML
       });
