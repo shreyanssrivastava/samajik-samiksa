@@ -31,12 +31,14 @@ export default async function handler(req, res) {
     }
 
     const article = snap.docs[0].data();
+    const avatar = article.avatar === "editor" ? "https://i.ibb.co/jZ3KPMTh/samiksa-editor.jpg" : "/assets/circle_logo.png";
     data = readFile("client", "article.html");
     data = data
     .replaceAll("{{TITLE}}", article.title)
     .replaceAll("{{DESCRIPTION}}", article.desc)
     .replaceAll("{{URL}}", url.origin + url.pathname)
     .replaceAll("{{AUTHOR}}", article.author)
+    .replaceAll("{{AVATAR}}", avatar)  
     .replaceAll("{{BODY}}", article.body);
     
     res.setHeader("Content-Type", "text/html; charset=utf-8");

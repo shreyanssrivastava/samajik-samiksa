@@ -95,10 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
 //  toast.promise("Processing...");
 
   let lastDoc = null;
+  const skWrap = document.getElementById("sk-wrap");
+  const pgWrap = document.getElementById("wrapper");
   const articles = document.getElementById("articles");
   const exploreBtn = document.getElementById("explore-btn");
   const expBtnIcon = document.getElementById("exp-btn-icon");
   const endText = document.getElementById("end-text");
+ 
   async function loadArts() {
     try {
     
@@ -119,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             where("status", "==", "published"),
             orderBy("publishedAt", "desc"),
             limit(10)
-          );     
+          );
       }
       
       const snaps = await getDocs(q);
@@ -137,18 +140,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const article = doc.data();
         const artBody = article.body.split("<p>")[1].split("</p>")[0];
         const card = document.createElement("article");
-        card.className = "article-card";
+        card.className = "article-card osa";
         card.innerHTML = `
             <div onClick="window.location.href='/articles/${article.slug}'" class="card-content">
               <h2>${article.title}</h2>
-              <p class="card-desc">${article.desc} • 800 Words</p>
+              <p class="card-desc">${article.desc} | ${article.words}</p>
               <p class="card-body">${artBody}</p>
               <em class="card-author">${article.author}</em>
               <img src="/assets/circle_logo.png" alt="circle-logo">
             </div>
         `;
 
+        skWrap.classList.add("hide");
+        pgWrap.classList.remove("hide");
         articles.appendChild(card);
+        fadeIn();
         expBtnIcon.classList.remove("fa-circle-notch", "fa-spin");
         expBtnIcon.classList.add("fa-arrow-right-long");
           
@@ -160,9 +166,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loadArts();
-  exploreBtn.addEventListener("click", loadArts);  
+  exploreBtn.addEventListener("click", function () {
+    this.disabled = true;
+    if (lastDoc) loadArts();
+  });  
   
-  
+             /*-- fade-in animation --*/
+  function fadeIn() {
+    const objects = document.querySelectorAll('.osa:not(.animated)');
+    const options = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('animate');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    objects.forEach(object => {
+        object.classList.add('animate');    
+        observer.observe(object);
+        object.addEventListener("transitionend", function () {
+          if (!this.classList.contains("explore")) {
+            this.classList.add("animated");
+          } else {
+              this.disabled = false;
+          }
+        }, { once: true });
+    });    
+  }
   
  
  

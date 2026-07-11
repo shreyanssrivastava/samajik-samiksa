@@ -113,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let content = null;
   const docxInp = document.getElementById("docx-file");
   const upBtn = document.getElementById("upload-docx");
+  const editorBtn = document.getElementById("editor");
+  const featureBtn = document.getElementById("featured");
   const slugInp = document.getElementById("inp_slug");  
   const publishBtn = document.getElementById("publish-btn");
   const openArticle = document.getElementById("open-article");
@@ -177,8 +179,30 @@ document.addEventListener('DOMContentLoaded', () => {
   slugInp.addEventListener("blur", function () {
     this.value = this.value.replace(/^-|-$/g, "");
   });
+
+  let editor = true;
+  editorBtn.addEventListener("click", function () {
+      editor = this.classList.toggle("checked");
+  });
   
-  
+  let featured = false;
+  featureBtn.addEventListener("click", function () {
+      featured = this.classList.toggle("checked");
+  }); 
+
+
+  const now = new Date();
+  const nextSunday = new Date(now);
+  nextSunday.setDate(now.getDate() + ((7 - now.getDay()) % 7 || 7));
+  nextSunday.setUTCHours(7, 30, 0, 0);
+
+  const utcTime = nextSunday.toISOString();
+  const istDate = nextSunday.toLocaleDateString("en-IN", {
+      timeZone: "Asia/Kolkata"
+  });
+
+
+
   publishBtn.addEventListener("click", () => {
     if (!content || !slugInp.value) {
       toast.error("Something went wrong");
@@ -187,27 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.promise("Processing...");
     publishContent();
   });
-
-/*
-// How to get next sunday 
-
-const d = new Date();
-
-const nextSunday = new Date(d);
-
-nextSunday.setDate(d.getDate() + ((7 - d.getDay()) % 7 || 7));
-
-nextSunday.setHours(8, 0, 0, 0);
-
-console.log(nextSunday.toISOString()); // for utc
-console.log(nextSunday.toLocaleString("en-IN")); //for ind
-
-const a = nextSunday.toLocaleString("en-IN").toUpperCase();
-
-console.log("SUNDAY,", a); // to show on UI
-
-*/
-
   
   async function publishContent() {
   
@@ -227,13 +230,14 @@ console.log("SUNDAY,", a); // to show on UI
       para.slice(0, 4).forEach(p => p.remove());
     
       const bodyText = data.body.textContent || "";
-      const exactWords = text.trim().split(/\s+/).filter(Boolean).length;
+      const exactWords = bodyText.trim().split(/\s+/).filter(Boolean).length;
       const approxWords = (count) => {
         const rem = count % 100;
         return rem === 50 ? count : rem < 50 ? count - rem : count + (100 - rem);
       };
       const words = approxWords(exactWords);
-      const author = lastP.slice(2).trim();      
+      const author = lastP.slice(2).trim();
+      const avatar = editor ? "editor" : "default";
       const bodyHTML = data.body.innerHTML;
 
       const docName = "issue-" + desc.match(/\d+/)[0].padStart(3, "0");      
@@ -244,6 +248,12 @@ console.log("SUNDAY,", a); // to show on UI
         desc: desc,
         words: words,
         author: author,
+        avatar: avatar,
+        emailSent: false,
+        publishAt: now,
+        publishedAt: now,
+        status: "published",
+        featured: featured,
         body: bodyHTML
       });
       
