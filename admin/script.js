@@ -250,9 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
         author: author,
         avatar: avatar,
         emailSent: false,
-        publishAt: now,
-        publishedAt: now,
-        status: "published",
+        publishAt: utcTime,
+        publishedAt: null,
+        status: "scheduled",
         featured: featured,
         body: bodyHTML
       });
