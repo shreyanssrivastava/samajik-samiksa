@@ -194,9 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const now = new Date();
   const nextSunday = new Date(now);
   nextSunday.setDate(now.getDate() + ((7 - now.getDay()) % 7 || 7));
-  nextSunday.setUTCHours(7, 30, 0, 0);
+  nextSunday.setHours(7, 30, 0, 0);
 
-  const utcTime = nextSunday.toISOString();
+//  const utcTime = nextSunday.toISOString();
   const istDate = nextSunday.toLocaleDateString("en-IN", {
       timeZone: "Asia/Kolkata"
   });
@@ -236,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return rem === 50 ? count : rem < 50 ? count - rem : count + (100 - rem);
       };
       const words = approxWords(exactWords);
+      const mins = Math.max(1, Math.ceil(words / 250));
       const author = lastP.slice(2).trim();
       const avatar = editor ? "editor" : "default";
       const bodyHTML = data.body.innerHTML;
@@ -247,10 +248,11 @@ document.addEventListener('DOMContentLoaded', () => {
         title: title,
         desc: desc,
         words: words,
+        minutes: mins,
         author: author,
         avatar: avatar,
         emailSent: false,
-        publishAt: utcTime,
+        publishAt: nextSunday,
         publishedAt: null,
         status: "scheduled",
         featured: featured,

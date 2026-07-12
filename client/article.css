@@ -256,6 +256,20 @@ img {
 #art-body p + p {
   margin-top: 1.5rem;
 }
+
+
+#art-body p {
+    transition: all .3s ease;
+}
+
+#art-body p.speaking {
+    background: rgba(255, 235, 59, .25);
+    border-left: 4px solid #ffc107;
+    padding-left: 12px;
+    transform: scale(1.01);
+}
+
+
 #art-body img {
   display: block;
   width: 100%;

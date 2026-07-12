@@ -109,6 +109,111 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = current;
   });
 
+
+
+
+const btn = document.getElementById("listen");
+const pauseBtn = document.getElementById("pause");
+const synth = window.speechSynthesis;
+
+function speakLongText(chunks, paragraphs) {
+
+    function clearHighlight() {
+        paragraphs.forEach(p => {
+          if (p) p.classList.remove("speaking");
+        });
+    }
+
+    function speakChunk(index) {
+        if (index >= chunks.length) {
+          clearHighlight();
+          return;
+        }
+        
+        clearHighlight();
+        
+        const paraIndex = index - 3;
+
+        if (paraIndex >= 0 && paraIndex < paragraphs.length) {
+            paragraphs[paraIndex].classList.add("speaking");
+
+            // Optional auto scroll
+            paragraphs[paraIndex].scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+        const utterance = new SpeechSynthesisUtterance(chunks[index]);
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        utterance.lang = "en-IN";
+
+        utterance.onend = () => {
+            speakChunk(index + 1);
+        };
+
+        speechSynthesis.speak(utterance);
+    }
+
+    speakChunk(0);
+}
+
+btn.addEventListener("click", () => {
+    speechSynthesis.cancel();
+    const author = document.getElementById("author-name").innerText;
+    const title = document.getElementById("art-title").innerText;      
+    const para = [...document.querySelectorAll("#art-body p")]    
+    .filter(p => p.innerText.trim());
+
+    const paraTexts = para.map(p => p.innerText.trim());
+
+    const chunks = [
+        `Welcome to Samajik Samiksha.`,
+        `You are listening to an article written by ${author}.`,
+        `Today's article is titled "${title}".`,     
+        ...paraTexts.slice(0, -1),
+        `Thank you for listening to Samajik Samiksha.`
+    ];
+    
+  //  console.log(para);
+    speakLongText(chunks, para);  
+});
+
+let speak = true;
+pauseBtn.onclick = () => {
+  //  console.log(speechSynthesis.paused);
+    if (speak) {
+        synth.pause();
+        speak = false;
+    } else {
+        synth.resume();
+        speak = true;
+    }
+};
+
+
+
+/*
+const btn = document.getElementById("listen");
+const articleText = document.getElementById("art-body").innerText;
+let utterance = null;
+setTimeout(() => {
+  utterance = new SpeechSynthesisUtterance(articleText);
+
+//  utterance.rate = 1;
+ // utterance.pitch = 1;
+//  utterance.lang = "en-US";
+  
+}, 5000);
+
+  
+btn.addEventListener("click", () => {
+  console.log("clicked");
+  speechSynthesis.speak(utterance);
+});
+*/
+
 /*  
   const slug = window.location.pathname.split("/").pop(); 
   const artTitle = document.getElementById("art-title");  

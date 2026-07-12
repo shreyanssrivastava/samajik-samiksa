@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.innerHTML = `
             <div onClick="window.location.href='/articles/${article.slug}'" class="card-content">
               <h2>${article.title}</h2>
-              <p class="card-desc">${article.desc} | ${article.words} WORDS</p>
+              <p class="card-desc">${article.desc} • ${article.minutes} min read</p>
               <p class="card-body">${artBody}</p>
               <em class="card-author">${article.author}</em>
               <img src="/assets/circle_logo.png" alt="circle-logo">
