@@ -55,12 +55,11 @@ img {
 .navbar { 
   display: flex;
   position: sticky;
-  backround: transparent;
   background-color: rgba(9, 9, 9, 0.65);
   backdrop-filter: blur(1.4rem);
   border-bottom: .08rem solid rgba(255,255,255,0.08);
   transition: all .5s ease;
-  color: white; 
+  color: #ffffff; 
   width: 100%; 
   height: 8rem; 
   padding: 0 1rem;
@@ -222,10 +221,15 @@ img {
   margin: 2.2rem 0;
   color: #b5b5b0;
 }
+.below-desc-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3.2rem; 
+  justify-content: space-between;
+}
 .author-box {
   display: flex;
   gap: 1rem;
-  margin-bottom: 3.2rem; 
   width: fit-content;
   align-items: center;
 }
@@ -239,6 +243,63 @@ img {
   font-weight: bold;
   color: #e2e2de;
 }
+
+#listen-btn {
+  display: flex;
+  background: transparent;
+  border: .1rem solid rgba(255,255,255,.3);
+  color: #F5F5F5;
+  gap: 1rem;
+  font-size: 1rem;
+  padding: 1rem 1.6rem;
+  border-radius: 10rem;
+  align-items: center;
+  transition: all .5s ease;
+}
+#listen-btn:hover {
+  border-color: #87ceeb;
+  color: #87ceeb;
+}
+#listen-btn.active {
+  border-color: #87ceeb;
+  color: #87ceeb;
+}
+
+#listen-play {
+  font-size: 1.2rem;
+}
+#player-box {
+  display: flex;
+  position: fixed;
+  padding: 1.8rem 2.2rem;
+  gap: 3rem;
+  bottom: -10rem;
+  left: 50%;
+  z-index: 999;
+  font-size: 1.4rem;
+  align-items: center;
+  border-radius: 1rem;
+  transform: translateX(-50%);
+  transition: bottom .5s ease;
+  background-color: rgba(9, 9, 9, 0.65);
+  backdrop-filter: blur(.5rem);
+  border: .1rem solid rgba(135,206,235,0.8);
+}
+#player-box.show {
+  bottom: 1rem;
+}
+#reset, #pause, #close {
+  font-size: 1.8rem;
+}
+#player-box span {
+  transition: all .3s ease;
+}
+#player-box span:hover {
+  color: #87ceeb;
+}
+
+
+
 #art-body {
   font-family: "Source Serif 4", serif;
   line-height: 1.9;
@@ -256,20 +317,13 @@ img {
 #art-body p + p {
   margin-top: 1.5rem;
 }
-
-
 #art-body p {
-    transition: all .3s ease;
+  transition: all .3s ease;
 }
-
 #art-body p.speaking {
-    background: rgba(255, 235, 59, .25);
-    border-left: 4px solid #ffc107;
-    padding-left: 12px;
-    transform: scale(1.01);
+  color: rgba(255, 235, 59, .8);
+  transform: scale(0.95);
 }
-
-
 #art-body img {
   display: block;
   width: 100%;
