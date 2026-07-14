@@ -321,7 +321,7 @@ img {
   transition: all .3s ease;
 }
 #art-body p.speaking {
-  color: rgba(255, 235, 59, .8);
+  color: #87ceeb;
   transform: scale(0.95);
 }
 #art-body img {
