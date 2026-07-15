@@ -288,15 +288,22 @@ img {
 #player-box.show {
   bottom: 1rem;
 }
-#reset, #pause, #close {
-  font-size: 1.8rem;
-}
 #player-box span {
   transition: all .3s ease;
 }
 #player-box span:hover {
   color: #87ceeb;
 }
+#reset, #pause, #close {
+  font-size: 1.8rem;
+}
+#close {
+  color: #ffcccc;
+}
+#player-box #close:hover {
+  color: #ff8080;
+}
+
 
 
 

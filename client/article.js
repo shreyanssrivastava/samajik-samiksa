@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const player = {
 
     currentIndex: 0,
+    currentRate: 1,
     status: "idle",
     chunks: [
         `Welcome to Samajik Samiksha.`,
@@ -181,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const utterance = new SpeechSynthesisUtterance(this.chunks[index]);
-        utterance.rate = 1;
+        utterance.rate = this.currentRate;
         utterance.pitch = 1;
         utterance.lang = "en-IN";
 
@@ -197,18 +198,22 @@ document.addEventListener('DOMContentLoaded', () => {
     play() {
         speechSynthesis.cancel();     
         this.status = "played";
+        this.currentRate = 1;
         this.speakChunk(0);
+        pause.classList.replace("fa-play", "fa-pause");
     },
     
     pause() { 
         this.status = "paused";
         this.clearHighlight();
         speechSynthesis.cancel();
+        pause.classList.replace("fa-pause", "fa-play");
     },
 
     resume() {
         this.status = "resumed";
         this.speakChunk(this.currentIndex);
+        pause.classList.replace("fa-play", "fa-pause");
     },
     
     stop() {
@@ -234,26 +239,42 @@ document.addEventListener('DOMContentLoaded', () => {
   pause.addEventListener("click", function () {
       if (player.status === "played" || player.status === "resumed") {
           player.pause();
-          this.classList.replace("fa-pause", "fa-play");
       } else {
           player.resume();
-          this.classList.replace("fa-play", "fa-pause");
       }
   });
 
-
-
   prev.addEventListener("click", function () {
+      if (player.status === "paused") return;
       const prevIndex = Math.max(0, player.currentIndex - 1);
       speechSynthesis.cancel();
       player.speakChunk(prevIndex);
   });
   
   next.addEventListener("click", function () {
+      if (player.status === "paused") return;
       const nextIndex = Math.min(player.chunks.length - 1, player.currentIndex + 1);
       speechSynthesis.cancel();
       player.speakChunk(nextIndex);
   });
+
+
+  
+  minus.addEventListener("click", function () {
+      if (player.status === "paused") return;
+      player.currentRate = Math.max(0.5, player.currentRate - 0.1);
+      speechSynthesis.cancel();
+      player.speakChunk(player.currentIndex);
+  });
+  
+  plus.addEventListener("click", function () {
+      if (player.status === "paused") return;
+      player.currentRate = Math.min(1.5, player.currentRate + 0.1);
+      speechSynthesis.cancel();
+      player.speakChunk(player.currentIndex);
+  });
+  
+
   
   reset.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });

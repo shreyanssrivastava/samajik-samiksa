@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return rem === 50 ? count : rem < 50 ? count - rem : count + (100 - rem);
       };
       const words = approxWords(exactWords);
-      const mins = Math.max(1, Math.ceil(words / 250));
+      const mins = Math.max(1, Math.ceil(words / 200));
       const author = lastP.slice(2).trim();
       const avatar = editor ? "editor" : "default";
       const bodyHTML = data.body.innerHTML;
