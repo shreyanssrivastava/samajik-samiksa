@@ -274,45 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-/*
-                ---- Sign In/Up ----
-                
-  const login = document.getElementById('login');
-  const account = document.getElementById('acc-box-bg');
- 
-  login.addEventListener('click', () => {
-      account.classList.toggle('show');
-  });
-  
-  const accBox = document.getElementById('acc-box');
-  const pfBox = document.getElementById('profile-box');
-  const frontBox = document.getElementById('front-box');
-  const toggleBtn = document.getElementById('toggle-form');
-  const logBox = document.getElementById('login-box');
- 
-  const name = document.getElementById('pro-name');
-  const email = document.getElementById('pro-email');
-  const image = document.querySelectorAll('#dp, #pc-dp, #pf-pic');
 
-  const pfName = document.getElementById('inp_pf_name');
-  const pfEmail = document.getElementById('inp_pf_email');
-  const pfEmailCheck = document.getElementById('pf-email-check');
-
-
-  document.getElementById("google-btn").addEventListener("click", (e) => {
-      toast.promise("Processing...");
-      signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log(result);
-        toast.success("Login successful");
-        window.location.replace('/');
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error(error);
-      });
-  });
-*/
 
 
 });
