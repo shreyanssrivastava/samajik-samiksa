@@ -291,6 +291,62 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  
+  let translated = false;
+  const originalContent = [];
+  
+  async function translation() {
+    const elements = document.querySelectorAll("#art-title, #art-desc, #art-body p");
+    
+    if (translated) {
+        elements.forEach((el, i) => {
+            el.innerHTML = originalContent[i];
+        });
+        translated = false;
+        return;
+    }
+    
+    try {
+      const translations = await Promise.all(
+          [...elements].map(el => translate(el.innerText.trim()))
+      );
+
+      elements.forEach((el, i) => {
+          originalContent.push(el.innerHTML);
+          el.innerText = translations[i];
+      });
+    
+      translated = true;
+    
+    } catch (error) {
+        toast.error(error);
+    }
+  }
+  
+  
+  async function translate(el) {
+    const text = encodeURIComponent(el);
+    const api = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${text}`;
+    const res = await fetch(api);
+    if (!res.ok) throw new Error("Something went wrong");
+    const data = await res.json();
+    const outcome = data[0].map(chunk => chunk[0]).join("");
+    
+    return outcome;
+  }
+  
+  const translateBtn = document.getElementById("translate");
+  translateBtn.addEventListener("click", async function () {
+      this.disabled = true;
+      await translation();
+      this.disabled = false;
+  });
+
+
+
+
+
+
 
 
 });
