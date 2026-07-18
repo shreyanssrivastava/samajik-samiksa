@@ -137,8 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
   .filter(p => p.innerText.trim()).slice(0, -1);
   const paraTexts = para.map(p => p.innerText.trim());
 
-  setTimeout(() => console.log(para), 5000);
-
   const player = {
 
     currentIndex: 0,
@@ -294,29 +292,45 @@ document.addEventListener('DOMContentLoaded', () => {
   
   let translated = false;
   const originalContent = [];
+  let transContent = null;
+  const tlElements = document.querySelectorAll("#art-title, #art-desc, #art-body p");
+  const translateBtn = document.getElementById("translate");
+  const tlBtnLang = translateBtn.children[1];
+  const tlHi = tlBtnLang.innerText;
   
   async function translation() {
-    const elements = document.querySelectorAll("#art-title, #art-desc, #art-body p");
     
     if (translated) {
-        elements.forEach((el, i) => {
+        tlElements.forEach((el, i) => {
             el.innerHTML = originalContent[i];
         });
         translated = false;
+        tlBtnLang.innerText = tlHi;
         return;
+    }
+    
+    if (transContent) {
+        tlElements.forEach((el, i) => {
+            el.innerText = transContent[i];
+        });
+        translated = true;
+        tlBtnLang.innerText = "ENG";
+        return;        
     }
     
     try {
       const translations = await Promise.all(
-          [...elements].map(el => translate(el.innerText.trim()))
+          [...tlElements].map(el => translate(el.innerText.trim()))
       );
 
-      elements.forEach((el, i) => {
+      tlElements.forEach((el, i) => {
           originalContent.push(el.innerHTML);
           el.innerText = translations[i];
+          transContent = translations;
       });
     
       translated = true;
+      tlBtnLang.innerText = "ENG";
     
     } catch (error) {
         toast.error(error);
@@ -335,10 +349,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return outcome;
   }
   
-  const translateBtn = document.getElementById("translate");
   translateBtn.addEventListener("click", async function () {
       this.disabled = true;
+      tlElements.forEach(el => el.classList.add("trans"));
       await translation();
+      tlElements.forEach(el => el.classList.remove("trans"));
       this.disabled = false;
   });
 
