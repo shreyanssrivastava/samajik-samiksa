@@ -196,7 +196,7 @@ img {
   gap: .7rem;
 }
 
-        /*---- section-one ----*/
+          /*---- section-one ----*/
 .sec-one {
   width: 100%;
 }
@@ -245,7 +245,7 @@ img {
   font-weight: bold;
   color: #e2e2de;
 }
-
+           /*---- audio-system ----*/
 #listen-btn {
   display: flex;
   background: transparent;
@@ -266,7 +266,6 @@ img {
   border-color: #87ceeb;
   color: #87ceeb;
 }
-
 #listen-play {
   font-size: 1.2rem;
 }
@@ -305,6 +304,7 @@ img {
 #player-box #close:hover {
   color: #ff8080;
 }
+           /*---- translation ----*/
 #translate {
   display: flex;
   position: relative;
@@ -352,7 +352,7 @@ img {
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
-
+          /*-- article-body --*/
 #art-body {
   font-family: "Source Serif 4", serif;
   line-height: 1.9;

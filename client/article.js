@@ -6,6 +6,7 @@
     doc, addDoc, setDoc, getDoc, getDocs,
     query, where, collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
+
 document.addEventListener('DOMContentLoaded', () => {
 
   let isUser = false;
@@ -21,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
      
      checkUser();
   });
-  
+
+
               /*---- create-toast ----*/
   let snack = null;
   const base = {
@@ -91,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
       `,
     })
   }; 
-  
-//  toast.promise("Processing...");
-   
+
+
+              /*---- navbar-movement ----*/   
   let lastScroll = 0;
 
   const navbar = document.getElementById('my-navbar')
@@ -110,18 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-
-
-
-
-
-
-
-
-
+                /*---- audio-system ----*/
   const listenBtn = document.getElementById("listen-btn");
-  const lisPlay = document.getElementById("listen-play");
- 
+  const lisPlay = document.getElementById("listen-play"); 
   const playBox = document.getElementById("player-box");
   const reset = document.getElementById("reset");
   const minus = document.getElementById("minus");
@@ -234,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 5000);
   });
 
-  pause.addEventListener("click", function () {
+  pause.addEventListener("click", () => {
       if (player.status === "played" || player.status === "resumed") {
           player.pause();
       } else {
@@ -242,44 +235,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
-  prev.addEventListener("click", function () {
+  prev.addEventListener("click", () => {
       if (player.status === "paused") return;
       const prevIndex = Math.max(0, player.currentIndex - 1);
       speechSynthesis.cancel();
       player.speakChunk(prevIndex);
   });
   
-  next.addEventListener("click", function () {
+  next.addEventListener("click", () => {
       if (player.status === "paused") return;
       const nextIndex = Math.min(player.chunks.length - 1, player.currentIndex + 1);
       speechSynthesis.cancel();
       player.speakChunk(nextIndex);
   });
-
-
   
-  minus.addEventListener("click", function () {
+  minus.addEventListener("click", () => {
       if (player.status === "paused") return;
       player.currentRate = Math.max(0.5, player.currentRate - 0.1);
       speechSynthesis.cancel();
       player.speakChunk(player.currentIndex);
   });
   
-  plus.addEventListener("click", function () {
+  plus.addEventListener("click", () => {
       if (player.status === "paused") return;
       player.currentRate = Math.min(1.5, player.currentRate + 0.1);
       speechSynthesis.cancel();
       player.speakChunk(player.currentIndex);
   });
   
-
-  
-  reset.addEventListener("click", function () {
+  reset.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       player.play();
   });
   
-  close.addEventListener("click", function () {
+  close.addEventListener("click", () => {
         player.stop();
         playBox.classList.remove("show"); 
         lisPlay.classList.remove("fa-solid", "fa-compact-disc", "fa-spin");
@@ -289,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  
+               /*---- translation ----*/
   let translated = false;
   const originalContent = [];
   let transContent = null;
@@ -336,7 +325,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toast.error(error);
     }
   }
-  
   
   async function translate(el) {
     const text = encodeURIComponent(el);
