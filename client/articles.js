@@ -91,8 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `,
     })
   }; 
-  
-//  toast.promise("Processing...");
+
 
   let lastDoc = null;
   const skWrap = document.getElementById("sk-wrap");

@@ -127,6 +127,25 @@ document.addEventListener('DOMContentLoaded', () => {
       `,
     })
   };
+  
+
+            /*---- featured-content ----*/
+  const featBox = document.getElementById("feat-arts");
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
+  
 
                 /*---- Sign In/Up ----*/
   const login = document.getElementById('login');
