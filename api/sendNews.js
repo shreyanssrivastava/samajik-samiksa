@@ -6,12 +6,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Unable to process" });
   }
 
-/*
   const authHeader = req.headers.authorization;
   if (!authHeader || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-*/
+
   try {
 
     const artSnap = await db
