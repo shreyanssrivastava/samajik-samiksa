@@ -20,8 +20,8 @@
     signInWithPhoneNumber,
     RecaptchaVerifier } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
   import {
-    doc, addDoc, setDoc, getDoc, getDocs,
-    query, where, collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    doc, addDoc, setDoc, getDoc, getDocs, orderBy,
+    startAfter, limit, query, where, collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
  
@@ -127,14 +127,91 @@ document.addEventListener('DOMContentLoaded', () => {
       `,
     })
   };
-  
+
+               /*---- explore-btn ----*/  
+  const expBtn = document.getElementById("explore-btn");
+  const featSection = document.querySelector(".feature-box");
+   
+  expBtn.addEventListener("click", () => {
+      featSection.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+      });
+  });
 
             /*---- featured-content ----*/
-  const featBox = document.getElementById("feat-arts");
+  const featArts = document.getElementById("feat-arts");
+  const swiperOptions = {
+      loop: true,
+      initialSlide: 0,
+      slidesPerView: 1,
+      grabCursor: true,
 
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true,
+        slideShadows: false
+      },
+    
+      speed: 2000,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false
+      },
+             
+      allowTouchMove: false
+  };
 
+  async function loadFeats() {
+    try {
   
-  
+      const q = query(
+          collection(db, "articles"),
+          where("status", "==", "published"),
+          where("featured", "==", true),            
+          orderBy("publishedAt", "desc")
+      );
+
+      const snaps = await getDocs(q);
+      
+      if (snaps.empty) {
+        toast.error("Featured articles not found!");
+        return;
+      }
+     
+      snaps.docs.forEach((doc) => {
+
+        const article = doc.data();
+        const artBody = article.body.split("<p>")[1].split("</p>")[0];
+        const card = document.createElement("article");
+        card.className = "article-card swiper-slide";
+        card.innerHTML = `
+            <div onClick="window.location.href='/articles/${article.slug}'" class="card-content">
+              <h2>${article.title}</h2>
+              <p class="card-desc">${article.desc} • ${article.minutes} min read</p>
+              <p class="card-body">${artBody}</p>
+              <em class="card-author">${article.author}</em>
+              <img src="/assets/circle_logo.png" alt="circle-logo">
+            </div>
+        `;
+     
+        featArts.classList.remove("loading");
+        featArts.appendChild(card);        
+      });
+     
+      const swiper = new Swiper('.swiper', swiperOptions);
+      swiper.autoplay.stop();
+      
+      setTimeout(() => {
+          swiper.autoplay.start();    
+      }, 500);
+    
+    } catch (error) {
+        alert(error);
+    }
+  }
+
+  loadFeats();  
   
   
   
