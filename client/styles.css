@@ -193,8 +193,8 @@ img {
   gap: .7rem;
 }
 
-        /*---- section-one ----*/
-.sec-one, .sec-two {
+         /*---- section-one ----*/
+.sec-one {
   width: 100%;
 }
 .top-decors {
@@ -231,6 +231,7 @@ img {
   color: #999;
   font-size: 1rem;
   letter-spacing: .3rem;
+  
 }
 .bold-line {
   text-align: left;
@@ -266,7 +267,12 @@ img {
   scale: 1.05;
   background: #bfbfbf;
 }
-           /*---- featured ----*/
+          /*---- section-two ----*/
+             /*-- featured --*/
+.sec-two {
+  width: 100%;
+  scroll-margin-top: 9rem;
+}
 .articles {
   display: flex;
   padding: 1rem 2rem;
@@ -290,7 +296,7 @@ img {
   font-size: .8rem;
   color: rgba(255,235,204,.8);
 }
-#feat-arts.loading {
+#feat-arts.loading, .lat-sk {
   opacity: 0.5;
   padding: 9.5rem 0;
   border-radius: 1.5rem;
@@ -305,6 +311,9 @@ img {
   to {
     background-position: -200% 0;
   }
+}
+.lat-sk.hide {
+  display: none;
 }
 .feat-art-card {
   display: grid;
@@ -375,7 +384,7 @@ img {
   filter: invert(1);
   transform: translate(-50%, -50%);
 }
-           /*---- latests ----*/
+           /*-- latests --*/
 .lat-title {
   display: flex;
   gap: 1.2rem;

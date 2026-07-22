@@ -130,13 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                /*---- explore-btn ----*/  
   const expBtn = document.getElementById("explore-btn");
-  const featSection = document.querySelector(".feature-box");
+  const secTwo = document.querySelector(".sec-two");
    
   expBtn.addEventListener("click", () => {
-      featSection.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-      });
+      secTwo.scrollIntoView({ behavior: "smooth" });
   });
 
             /*---- featured-content ----*/
@@ -213,9 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
       swiper = new Swiper('.swiper', swiperOptions);      
       swiper.autoplay.stop();
       
-      setTimeout(() => {
-          swiper.autoplay.start();    
-      }, 500);
+      setTimeout(() => swiper.autoplay.start(), 500);
     
     } catch (error) {
         console.log(error);
@@ -228,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             /*---- latest-content ----*/
   const latArts = document.getElementById("lat-arts");  
-
+  const latSk = document.querySelectorAll(".lat-sk");
   async function loadLatests() {
     try {
   
@@ -262,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
      
-   //     featArts.classList.remove("loading");
+        latSk.forEach(sk => sk.classList.add("hide"));
         latArts.appendChild(card);        
       });
      
