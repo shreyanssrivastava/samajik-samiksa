@@ -140,35 +140,46 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
             /*---- featured-content ----*/
-  const featArts = document.getElementById("feat-arts");
+  const featArts = document.getElementById("feat-arts");  
+  let swiper = null;
   const swiperOptions = {
       loop: true,
-      initialSlide: 0,
-      slidesPerView: 1,
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      spaceBetween: 30,
       grabCursor: true,
 
-      effect: 'fade',
-      fadeEffect: {
-        crossFade: true,
+      effect: 'coverflow',
+      coverflowEffect: {
+        rotate: 0,
+        strech: 0,
+        depth: 80,
+        scale: 0.95,
+        modifier: 1,       
         slideShadows: false
       },
-    
-      speed: 2000,
+
+      speed: 1000,
       autoplay: {
-        delay: 4000,
+        delay: 7000,
         disableOnInteraction: false
       },
+      
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'fraction'
+      },
              
-      allowTouchMove: false
+      allowTouchMove: true
   };
-
+  
   async function loadFeats() {
     try {
   
       const q = query(
           collection(db, "articles"),
           where("status", "==", "published"),
-          where("featured", "==", true),            
+          where("featured", "==", true),
           orderBy("publishedAt", "desc")
       );
 
@@ -183,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const article = doc.data();
         const artBody = article.body.split("<p>")[1].split("</p>")[0];
-        const card = document.createElement("article");
-        card.className = "article-card swiper-slide";
+        const card = document.createElement("div");
+        card.className = "feat-art-card swiper-slide";
         card.innerHTML = `
             <div onClick="window.location.href='/articles/${article.slug}'" class="card-content">
               <h2>${article.title}</h2>
@@ -199,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         featArts.appendChild(card);        
       });
      
-      const swiper = new Swiper('.swiper', swiperOptions);
+      swiper = new Swiper('.swiper', swiperOptions);      
       swiper.autoplay.stop();
       
       setTimeout(() => {
@@ -207,13 +218,64 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
     
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
   }
 
-  loadFeats();  
+  loadFeats();
+
+
+
+            /*---- latest-content ----*/
+  const latArts = document.getElementById("lat-arts");  
+
+  async function loadLatests() {
+    try {
   
+      const q = query(
+          collection(db, "articles"),
+          where("status", "==", "published"),
+          orderBy("publishedAt", "desc"),
+          limit(6)
+      );
+
+      const snaps = await getDocs(q);
+      
+      if (snaps.empty) {
+        toast.error("Latest articles not found!");
+        return;
+      }
+     
+      snaps.docs.forEach((doc) => {
+
+        const article = doc.data();
+        const artBody = article.body.split("<p>")[1].split("</p>")[0];
+        const card = document.createElement("article");
+        card.className = "lat-art-card";
+        card.innerHTML = `
+            <div onClick="window.location.href='/articles/${article.slug}'" class="card-content">
+              <h2>${article.title}</h2>
+              <p class="card-desc">${article.desc} • ${article.minutes} min read</p>
+              <p class="card-body">${artBody}</p>
+              <em class="card-author">${article.author}</em>
+              <img src="/assets/circle_logo.png" alt="circle-logo">
+            </div>
+        `;
+     
+   //     featArts.classList.remove("loading");
+        latArts.appendChild(card);        
+      });
+     
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+  loadLatests();
+
+
   
+      
   
   
   
