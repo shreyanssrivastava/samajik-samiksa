@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = "/articles";
   });
   paper.addEventListener('click', () => {
-    window.location.href = "/cu.html";
+    window.location.href = "/papers";
   });
   about.addEventListener('click', () => {
-    window.location.href = "/cu.html";
+    window.location.href = "/about";
   });
   connect.addEventListener('click', () => {
-    window.location.href = "/cu.html";
+    window.location.href = "/contact";
   });
 
             /*---- create-toast ----*/
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slideShadows: false
       },
 
-      speed: 1000,
+      speed: 800,
       autoplay: {
         delay: 7000,
         disableOnInteraction: false
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
           collection(db, "articles"),
           where("status", "==", "published"),
           orderBy("publishedAt", "desc"),
-          limit(6)
+          limit(4)
       );
 
       const snaps = await getDocs(q);
