@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const connect = document.getElementById('connect');
 
   home.addEventListener('click', () => {
-    location.reload();
+    window.location.replace("/");
   });
   enote.addEventListener('click', () => {
     window.location.href = "/enote";
