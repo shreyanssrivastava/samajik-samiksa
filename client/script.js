@@ -31,33 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   provider.setCustomParameters({ hl: "en" });
 
 
-            /*---- page-navigation ----*/
-  const home = document.getElementById('home');
-  const enote = document.getElementById('enote');
-  const article = document.getElementById('article');
-  const paper = document.getElementById('paper');
-  const about = document.getElementById('about');
-  const connect = document.getElementById('connect');
-
-  home.addEventListener('click', () => {
-    window.location.replace("/");
-  });
-  enote.addEventListener('click', () => {
-    window.location.href = "/enote";
-  });
-  article.addEventListener('click', () => {
-    window.location.href = "/articles";
-  });
-  paper.addEventListener('click', () => {
-    window.location.href = "/papers";
-  });
-  about.addEventListener('click', () => {
-    window.location.href = "/about";
-  });
-  connect.addEventListener('click', () => {
-    window.location.href = "/contact";
-  });
-
             /*---- create-toast ----*/
   let snack = null;
   const base = {
@@ -368,5 +341,30 @@ document.addEventListener('DOMContentLoaded', () => {
           toast.error(error);
       });
     });
+
+
+
+
+
+             /*---- ©-Year ----*/
+  const crYear = document.getElementById('cr-year');
+  const currentYear = new Date().getFullYear();
+  crYear.textContent = currentYear;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
