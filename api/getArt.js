@@ -36,10 +36,12 @@ export default async function handler(req, res) {
     data = data
     .replaceAll("{{TITLE}}", article.title)
     .replaceAll("{{DESCRIPTION}}", article.desc)
+    .replaceAll("{{WORDS}}", article.words)
     .replaceAll("{{URL}}", url.origin + url.pathname)
     .replaceAll("{{AUTHOR}}", article.author)
     .replaceAll("{{AVATAR}}", avatar)  
-    .replaceAll("{{BODY}}", article.body);
+    .replaceAll("{{BODY}}", article.body)
+    .replaceAll("{{COMMENTS}}", JSON.stringify(article.comments));
     
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.status(200).send(data);  

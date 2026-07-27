@@ -348,6 +348,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  const shareBtn = document.querySelectorAll(".share");
+  shareBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      navigator.share({
+        title: title,
+        url: location.href
+      });
+    });
+  });
+
+
+/*
+  const comBox = document.getElementById("comment-box");  
+  const comArr = document.getElementById("com-json");    
+  const comments = JSON.parse(comArr.textContent);
+ 
+  comments.forEach((msg) => {  
+      const com = document.createElement("div");
+      com.className = "comment";
+      com.innerHTML = `
+          <p class="card-desc">${msg.text}</p>
+          <em class="card-author">${msg.user}</em>
+      `;
+      
+      comBox.appendChild(com);
+  });
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
