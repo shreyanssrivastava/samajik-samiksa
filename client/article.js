@@ -368,8 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const com = document.createElement("div");
       com.className = "comment";
       com.innerHTML = `
-          <p class="card-desc">${msg.text}</p>
-          <em class="card-author">${msg.user}</em>
+          <small class="com-user">${msg.user || "Anonymous"}</small>
+          <p class="com-text">${msg.text}</p>
       `;
       
       comBox.appendChild(com);

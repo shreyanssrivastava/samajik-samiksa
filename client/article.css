@@ -451,16 +451,31 @@ th {
 #comment-box {
   display: none;
   gap: 2rem;
+  padding: 2rem 0;
   flex-direction: column;
 }
 .comment {
-  background: #121212;
+  background: #1a1a1a;;
   color: #fff;
-  max-width: 50%;
-  padding: 1rem 2rem;
-  border-radius: .5rem;
+  width: fit-content;
+  max-width: 75%;
+  text-align: left;
+  padding: .5rem 0 0 .6rem;
+  border-radius: 0 1rem 1rem 1rem;
 }
-
+.com-user {
+  text-transform: uppercase;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  color: #9A9A94;
+}
+.com-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e7e7e4;
+  font-family: Inter, sans-serif;
+  margin: 1.5rem 2rem 1rem 1.4rem;
+}
 
 
 
