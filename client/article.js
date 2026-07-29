@@ -3,8 +3,8 @@
   import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
  
   import {
-    doc, addDoc, setDoc, getDoc, getDocs,
-    query, where, collection } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    doc, addDoc, setDoc, getDoc, getDocs, updateDoc,
+    arrayUnion, query, where, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -347,8 +347,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+  const comBtnTop = document.getElementById("com-btn-top");
   const shareBtn = document.querySelectorAll(".share");
+  const secTwo = document.querySelector(".sec-two");
+  const comBtnBottom = document.getElementById("com-btn-bottom");
+  const comInput = document.getElementById("com-input");
+  const comPostBtn = document.getElementById("com-post-btn");
+  const artDesc = document.getElementById("art-desc");
+  const docName = "issue-" + artDesc.match(/\d+/)[0].padStart(3, "0");
+
+  comBtnTop.addEventListener("click", () => {
+    secTwo.scrollIntoView({
+        behavior: "smooth"
+    });
+  });
+  
+  comBtnBottom.addEventListener("click", () => {
+    comInput.focus();
+  });
+  
+  comInput.addEventListener("input", function () {
+    if (this.value.trim().length > 0) {
+      comPostBtn.classList.add("show");
+    } else {
+        comPostBtn.classList.remove("show");
+    }
+  });
+
+/*  
+  comPostBtn.addEventListener("click", async function () {
+    if (!comInput.value.trim()) return;
+    this.disabled = true;
+    try {
+      await updateDoc(doc(db, "articles", "testing"), {
+          comments: arrayUnion({
+            user: auth.currentUser.email || "",
+            text: comInput.value.trim(),
+            time: serverTimestamp()
+            
+          })
+      });
+      alert("succeed")
+    } catch (error) {
+        alert(error);
+    }
+  });
+*/
   shareBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
       navigator.share({
@@ -359,12 +403,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-/*
+
   const comBox = document.getElementById("comment-box");  
   const comArr = document.getElementById("com-json");    
   const comments = JSON.parse(comArr.textContent);
  
-  comments.forEach((msg) => {  
+  if (comments.length > 0) {
+    comments.forEach((msg) => {  
       const com = document.createElement("div");
       com.className = "comment";
       com.innerHTML = `
@@ -373,8 +418,15 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       
       comBox.appendChild(com);
-  });
-*/
+    });
+  } else {
+      const defMsg = document.createElement("p");
+      defMsg.className = "com-def-msg";
+      defMsg.innerText = "No comments yet. Be the first to share your thoughts!";
+      
+      comBox.appendChild(defMsg);
+  }
+
 
 
 

@@ -82,7 +82,7 @@
       <button id="translate"><span class="fa-solid fa-globe"></span><span>हिन्दी</span><span class="tl-google">Translated by <span>Google</span></span></button>
       <div class="lcs lcs-top">
        <span class="fa-regular fa-heart"></span>
-       <span class="fa-regular fa-comment"></span>      
+       <span id="com-btn-top" class="fa-regular fa-comment"></span>      
        <span class="share fa-regular fa-paper-plane"></span>
       </div>
      </div>
@@ -94,8 +94,12 @@
      <span class="separator"></span>
      <div class="lcs lcs-bottom">
        <span class="fa-regular fa-heart"></span>
-       <span class="fa-regular fa-comment"></span>      
+       <span id="com-btn-bottom" class="fa-regular fa-comment"></span>      
        <span class="share fa-regular fa-paper-plane"></span>
+     </div>
+     <div class="com-post-box">
+       <textarea id="com-input" maxlength="250" placeholder="Share your thoughts..."></textarea>
+       <button id="com-post-btn"><span class="fa-solid fa-up-right-from-square"></span></button>
      </div>
      <p id="com-json" hidden>{{COMMENTS}}</p>
      <div id="comment-box"></div>
