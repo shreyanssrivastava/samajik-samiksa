@@ -447,6 +447,17 @@ th {
   width: fit-content;
   padding: 1.4rem 2.4rem;
 }
+.like {
+  position: relative;
+}
+.like code {
+  position: absolute;
+  font-size: 1rem;
+  color: #ccc;
+  margin-left: .5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .like.fa-solid {
   color: #d85c63;
 }

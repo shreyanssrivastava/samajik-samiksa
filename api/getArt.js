@@ -41,6 +41,7 @@ export default async function handler(req, res) {
     .replaceAll("{{AUTHOR}}", article.author)
     .replaceAll("{{AVATAR}}", avatar)  
     .replaceAll("{{BODY}}", article.body)
+    .replaceAll("{{LIKES}}", article.likes)
     .replaceAll("{{COMMENTS}}", JSON.stringify(article.comments));
     
     res.setHeader("Content-Type", "text/html; charset=utf-8");

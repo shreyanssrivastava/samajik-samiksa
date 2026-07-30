@@ -347,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const likeBtn = document.querySelectorAll(".like");
+  const likeCount = document.getElementById("like-count");
   const comBtnTop = document.getElementById("com-btn-top");
   const shareBtn = document.querySelectorAll(".share");
   const secTwo = document.querySelector(".sec-two");
@@ -355,12 +356,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const comPostBtn = document.getElementById("com-post-btn");
   const artDesc = document.getElementById("art-desc").textContent;
   const docName = "issue-" + artDesc.match(/\d+/)[0].padStart(3, "0");
+  const slug = window.location.pathname.split("/").pop();
+  const heartData = JSON.parse(localStorage.getItem("art-heart-db")) || [];
+  let liked = heartData.includes(btoa(slug));
 
   likeBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    
+    if (liked) btn.classList.replace("fa-regular", "fa-solid");
+  
+    btn.addEventListener("click", async function () {
+      let unliked = this.classList.contains("fa-regular"); 
       likeBtn.forEach((btn) => {
-        btn.classList.toggle("fa-solid");
-        btn.classList.toggle("fa-regular");
+          btn.classList.toggle("fa-regular");
+          btn.classList.toggle("fa-solid");            
+      });   
+      
+      if (unliked) {
+          likeCount.innerText = Number(likeCount.textContent) + 1;
+          heartData.push(btoa(slug));
+          localStorage.setItem("art-heart-db", JSON.stringify(heartData));
+      } else {
+          likeCount.innerText = Number(likeCount.textContent) - 1;
+          heartData.splice(heartData.indexOf(btoa(slug)), 1);
+          localStorage.setItem("art-heart-db", JSON.stringify(heartData));
+      }
+      
+      await updateDoc(doc(db, "articles", docName), {
+          likes: Number(likeCount.textContent)
       });
     });
   });
