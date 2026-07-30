@@ -357,25 +357,6 @@ img {
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
-            /*-- share --*/
-
-.lcs {
-  display: flex;
-  background: transparent;
-  border: .1rem solid rgba(255,255,255,.08);
-  color: #F5F5F5;
-  gap: 3rem;
-  font-size: 1.3rem;
-  padding: 1rem 2rem;
-  border-radius: .8rem;
-  align-items: center;
-}
-.lcs span {
-  transition: color .3s ease;
-}
-.lcs span:hover {
-  color: #ffb3ff;
-}
 
           /*-- article-body --*/
 #art-body {
@@ -431,8 +412,7 @@ th {
   background-color: #121212;
 }
 
-
-
+           /*---- user-response ----*/
 .response {
   padding: 0 2rem;
   max-width: 72rem;
@@ -444,11 +424,31 @@ th {
   margin-bottom: 3rem;
   border-top: .08rem solid rgba(255,255,255,.1);
 }
+.lcs {
+  display: flex;
+  background: transparent;
+  border: .1rem solid rgba(255,255,255,.08);
+  color: #F5F5F5;
+  gap: 3rem;
+  font-size: 1.3rem;
+  padding: 1rem 2rem;
+  border-radius: .8rem;
+  align-items: center;
+}
+.lcs span {
+  transition: color .3s ease;
+}
+.lcs span:hover {
+  color: #ffb3ff;
+}
 .lcs-bottom {
   gap: 5rem;
   font-size: 1.4rem;
   width: fit-content;
   padding: 1.4rem 2.4rem;
+}
+.like.fa-solid {
+  color: #d85c63;
 }
 .com-post-box {
   display: flex;

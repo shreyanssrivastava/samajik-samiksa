@@ -4,7 +4,7 @@
  
   import {
     doc, addDoc, setDoc, getDoc, getDocs, updateDoc,
-    arrayUnion, query, where, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    arrayUnion, query, where, collection, Timestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const checkUser = onAuthStateChanged(auth, (user) => {
      if (user) {
-        isUser = true;        
+        isUser = true;
         console.log(JSON.stringify(user));
      } else {
          isUser = false;
@@ -346,15 +346,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-
+  const likeBtn = document.querySelectorAll(".like");
   const comBtnTop = document.getElementById("com-btn-top");
   const shareBtn = document.querySelectorAll(".share");
   const secTwo = document.querySelector(".sec-two");
   const comBtnBottom = document.getElementById("com-btn-bottom");
   const comInput = document.getElementById("com-input");
   const comPostBtn = document.getElementById("com-post-btn");
-  const artDesc = document.getElementById("art-desc");
+  const artDesc = document.getElementById("art-desc").textContent;
   const docName = "issue-" + artDesc.match(/\d+/)[0].padStart(3, "0");
+
+  likeBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      likeBtn.forEach((btn) => {
+        btn.classList.toggle("fa-solid");
+        btn.classList.toggle("fa-regular");
+      });
+    });
+  });
 
   comBtnTop.addEventListener("click", () => {
     secTwo.scrollIntoView({
@@ -374,25 +383,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-/*  
+
   comPostBtn.addEventListener("click", async function () {
     if (!comInput.value.trim()) return;
     this.disabled = true;
+    this.children[0].classList.remove("fa-up-right-from-square");
+    this.children[0].classList.add("fa-spinner", "fa-spin-pulse");
     try {
-      await updateDoc(doc(db, "articles", "testing"), {
+      await updateDoc(doc(db, "articles", docName), {
           comments: arrayUnion({
-            user: auth.currentUser.email || "",
+            user: auth.currentUser?.displayName || "",
             text: comInput.value.trim(),
-            time: serverTimestamp()
-            
+            time: Timestamp.now()            
           })
       });
-      alert("succeed")
+      location.reload();
     } catch (error) {
-        alert(error);
+        toast.error(error);
     }
   });
-*/
+
+
   shareBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
       navigator.share({
@@ -406,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const comBox = document.getElementById("comment-box");  
   const comArr = document.getElementById("com-json");    
-  const comments = JSON.parse(comArr.textContent);
+  const comments = JSON.parse(comArr.textContent).reverse();
  
   if (comments.length > 0) {
     comments.forEach((msg) => {  
