@@ -104,10 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
                /*---- explore-btn ----*/  
   const expBtn = document.getElementById("explore-btn");
   const secTwo = document.querySelector(".sec-two");
-   
+  const aboutBtn = document.querySelectorAll(".about");
+  const secThr = document.querySelector(".sec-three");
+
   expBtn.addEventListener("click", () => {
       secTwo.scrollIntoView({ behavior: "smooth" });
   });
+  
+  aboutBtn.forEach((btn) => {
+      btn.addEventListener("click", () => {
+          secThr.scrollIntoView({ behavior: "smooth" });
+      });
+  });
+
+
+  
 
             /*---- featured-content ----*/
   const featArts = document.getElementById("feat-arts");  

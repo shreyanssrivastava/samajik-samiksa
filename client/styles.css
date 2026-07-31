@@ -403,7 +403,7 @@ img {
   align-items: center;
   justify-content: space-between;
 }
-.lat-title {
+.lat-title, .about-title {
   display: flex;
   gap: 1.2rem;
   color: #f5f5f5;
@@ -449,6 +449,39 @@ img {
   transform: translateY(-0.5rem);
   border-color: rgba(255,255,255,.12);
 }
+
+
+
+.sec-three {
+  width: 100%;
+  scroll-margin-top: 12rem;
+}
+.about-area {
+  display: flex;
+  padding: 1rem 2rem;
+  flex-direction: column;
+}
+.about-text {
+  display: flex;
+  gap: 1rem;
+  line-height: 1.9;
+  color: #f5f5f3;
+  padding: 0 1rem;
+  letter-spacing: 0.02em;
+  font-size: 1.15rem;
+  margin: 2.5rem 0 3rem 0;
+  background: 
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,.025),
+      transparent 70%
+    );
+  flex-direction: column;
+  font-family: Inter, sans-serif;
+}
+
+
+
 
 
 
