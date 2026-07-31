@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       openArticle.href = `/articles/${slugInp.value}`;
-      openArticle.textContent = `samajiksamiksa.vercel.app/articles/${slugInp.value}`;
+      openArticle.textContent = `samajiksamiksa.in/articles/${slugInp.value}`;
       openArticle.style.display = "block";
       slugInp.value = "";
       toast.success("Successfully published");
