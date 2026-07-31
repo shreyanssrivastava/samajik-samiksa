@@ -251,6 +251,8 @@ document.addEventListener('DOMContentLoaded', () => {
         minutes: mins,
         author: author,
         avatar: avatar,
+        likes: 0;
+        comments: [],
         emailSent: false,
         publishAt: nextSunday,
         publishedAt: null,
