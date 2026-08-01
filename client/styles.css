@@ -27,6 +27,10 @@
 ::-webkit-scrollbar {
   display: none;
 }
+html,
+:root {
+  scroll-behavior: smooth;
+}
 *,
 *::before,
 *::after {
