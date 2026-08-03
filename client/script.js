@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   };
 
+
                /*---- explore-btn ----*/  
   const expBtn = document.getElementById("explore-btn");
   const secTwo = document.querySelector(".sec-two");

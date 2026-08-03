@@ -1,0 +1,11 @@
+# samajiksamiksa.in robots.txt
+# © SAMAJIK SAMĪKṢĀ | All rights reserved
+
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /api/
+Disallow: /lib/
+
+Sitemap: https://samajiksamiksa.in/sitemap.xml
