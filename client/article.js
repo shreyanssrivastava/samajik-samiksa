@@ -386,14 +386,15 @@ document.addEventListener('DOMContentLoaded', () => {
           
       } else {
           likeCount.innerText = Number(likeCount.textContent) - 1;
+          heartData.splice(heartData.indexOf(btoa(slug)), 1);
+          localStorage.setItem("art-heart-db", JSON.stringify(heartData));
 
           fetch("/api/userRes", {
             method: "POST",
             body: JSON.stringify({ docId: docName, data: "unlike" })
           })
           .then((res) => {
-            heartData.splice(heartData.indexOf(btoa(slug)), 1);
-            localStorage.setItem("art-heart-db", JSON.stringify(heartData));
+            console.log(res);
           })
           .catch(err => toast.error(err));
       }      
