@@ -373,17 +373,30 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (unliked) {
           likeCount.innerText = Number(likeCount.textContent) + 1;
-          heartData.push(btoa(slug));
-          localStorage.setItem("art-heart-db", JSON.stringify(heartData));
+          
+          fetch("/api/userRes", {
+            method: "POST",
+            body: JSON.stringify({ docId: docName, data: "like" })
+          })
+          .then((res) => {
+            heartData.push(btoa(slug));
+            localStorage.setItem("art-heart-db", JSON.stringify(heartData));              
+          })
+          .catch(err => toast.error(err));
+          
       } else {
           likeCount.innerText = Number(likeCount.textContent) - 1;
-          heartData.splice(heartData.indexOf(btoa(slug)), 1);
-          localStorage.setItem("art-heart-db", JSON.stringify(heartData));
-      }
-      
-      await updateDoc(doc(db, "articles", docName), {
-          likes: Number(likeCount.textContent)
-      });
+
+          fetch("/api/userRes", {
+            method: "POST",
+            body: JSON.stringify({ docId: docName, data: "unlike" })
+          })
+          .then((res) => {
+            heartData.splice(heartData.indexOf(btoa(slug)), 1);
+            localStorage.setItem("art-heart-db", JSON.stringify(heartData));
+          })
+          .catch(err => toast.error(err));
+      }      
     });
   });
 
@@ -411,18 +424,20 @@ document.addEventListener('DOMContentLoaded', () => {
     this.disabled = true;
     this.children[0].classList.remove("fa-up-right-from-square");
     this.children[0].classList.add("fa-spinner", "fa-spin-pulse");
-    try {
-      await updateDoc(doc(db, "articles", docName), {
-          comments: arrayUnion({
-            user: auth.currentUser?.displayName || "",
-            text: comInput.value.trim(),
-            time: Timestamp.now()            
-          })
-      });
-      location.reload();
-    } catch (error) {
-        toast.error(error);
-    }
+    const comment = {
+        user: auth.currentUser?.displayName || "",
+        text: comInput.value.trim(),
+        time: null
+    };
+
+    fetch("/api/userRes", {
+        method: "POST",
+        body: JSON.stringify({ docId: docName, data: comment })
+    })
+    .then((res) => {
+        location.reload();
+    })
+    .catch(err => toast.error(err));
   });
 
 
