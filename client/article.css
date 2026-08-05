@@ -517,7 +517,7 @@ th {
   width: fit-content;
   max-width: 75%;
   text-align: left;
-  padding: .5rem 0 0 .6rem;
+  padding: .5rem .6rem 0 .6rem;
   border-radius: 0 1rem 1rem 1rem;
 }
 .com-user {
@@ -531,7 +531,7 @@ th {
   line-height: 1.7;
   color: #e7e7e4;
   font-family: Inter, sans-serif;
-  margin: 1.5rem 2rem 1rem 1.4rem;
+  margin: 1.5rem 1.4rem 1rem 1.4rem;
 }
 .com-def-msg {
   font-style: italic;

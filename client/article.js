@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const com = document.createElement("div");
       com.className = "comment";
       com.innerHTML = `
-          <small class="com-user">${msg.user || "Anonymous"}</small>
+          <small class="com-user">${msg.user || "Anonymous"} • ${new Date(msg.time._seconds * 1000).toLocaleString()}</small>
           <p class="com-text">${msg.text}</p>
       `;
       
