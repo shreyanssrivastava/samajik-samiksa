@@ -13,7 +13,8 @@
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/> 
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik+Scribble&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Offside&display=swap">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik+Scribble&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Offside&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap">
+   <script src="https://kit.fontawesome.com/2e39ca5f52.js" crossorigin="anonymous"></script>
    <style>
            /*---- media-query ----*/ 
 @media (max-width: 400px) { 
@@ -65,7 +66,7 @@ body {
 img {
   pointer-events: none;
 }
-        /*---- navbar ----*/ 
+          /*---- navbar ----*/ 
 .navbar { 
   display: flex;
   position: sticky;
@@ -100,14 +101,150 @@ img {
 .sec-one {
   display: grid;
   width: 100%;
-  padding-top: 5rem;
+  padding-top: 8rem;
   place-items: center;
 }
 .sec-one h1 {
   font-family: "Offside", sans-serif;
   padding: 3rem;
+  opacity: .5;
   border-radius: 1.5rem;
-  border: .08rem solid rgba(255,255,255,0.1);
+  border: .08rem solid rgba(255,255,255,.5);
+}
+         /*---- footer ----*/
+footer {
+  display: grid;
+  padding: 2rem;
+  width: 100%;
+  gap: 2rem;
+  margin-top: 8rem;
+  place-items: center;
+  background: #080808;
+  text-transform: uppercase;
+  grid-template-columns: 1fr;
+  border-top: .1rem solid rgba(255,255,255,.06);
+}
+footer div {
+  width: 100%;
+  max-width: 72rem;
+}
+.foot-hero {
+  display: flex;
+  gap: 2.5rem;
+  margin: 0 auto;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  border-bottom: .08rem solid rgba(255,255,255,.1);
+}
+.foot-hero img {
+  width: 7rem;
+  height: 7rem;
+  filter: invert(1);
+  border-radius: 50%;
+}
+.foot-hero h3 {
+  font-weight: 400;
+  letter-spacing: .075rem;
+  font-family: "Cormorant Garamond";
+}
+.foot-subs {
+  display: flex;
+  gap: 1.2rem;
+  margin: 0 auto;
+  width: fit-content;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;  
+}
+.foot-subs button {
+  display: flex;
+  padding: 1rem 2.25rem;
+  gap: 1.2rem;
+  font-size: .9rem;
+  background: #f5f5f5;
+  border: none;
+  border-radius: .5rem;
+  align-items: center;
+  transition: all .5s ease;
+}
+.foot-subs p {
+  text-transform: none;
+  line-height: 1.5rem;
+  font-family: "Ubuntu", sans-serif;
+}
+.foot-subs button:hover {
+  scale: 1.05;
+  background: #bfbfbf;
+}
+.foot-links {
+  display: grid;
+  gap: 1.8rem;
+  padding: 1.8rem;
+  grid-template-columns: 1fr;
+}
+.foot-menu {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+}
+.foot-menu h2 {
+  color:#F8F8F5;
+  font-size: 1.1rem;
+  line-height: 2rem;
+  font-fmily:"Cormorant Garamond";
+  font-family: "Inter", sans-serif;
+}
+.foot-menu span {
+  display: flex;
+  color: #c8c8c3;
+  gap: 1rem;
+  font-size: .9rem;
+  margin-left: 1.5rem;
+  width: fit-content;
+  align-items: center;
+  transition: color .3s ease;
+}
+.foot-menu span:hover {
+  color: #fff;
+}
+.foot-menu span i {
+  opacity: .65;
+}
+.copyright {
+  display: flex;
+  align-items: center;
+  line-height: 2rem;  
+  flex-direction: column;
+  text-transform: none;
+  padding-top: 1.5rem;
+  font-family: "Inter", sans-serif;
+  border-top: .08rem solid rgba(255,255,255,.1);
+}
+.cr-text {
+  letter-spacing: .05rem;
+}
+.foot-dev {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+  width: fit-content;
+}
+.developer {
+  display: flex;
+  gap: .5rem;
+  font-size: .8rem;
+  align-items: center;
+  padding: .2rem .8rem;
+  border-radius: .7rem;
+  background: #262626;
+  border: .05rem solid #262626;
+  transition: border-color .3s ease, background .3s ease;
+}
+.developer:hover {
+  border-color: #fff; 
+  background: transparent;
 }
    </style>
   </head>
@@ -120,6 +257,39 @@ img {
    </nav> 
    <section class="sec-one">
       <h1>404 not found!</h1>
-   <section
+   </section>
+   
+   <footer class="footer">
+    <div class="foot-hero">
+     <img src="/assets/circle_logo.png" alt="footer-logo">
+     <h3>SAMAJIK SAMĪKṢĀ • THE SOCIAL SCRUTINY</h3>
+    </div>
+    <div class="foot-subs">
+     <button>Subscribe</button>
+     <p>Subscribe to our newsletter to receive the latest<br>publications directly in your inbox.</p>
+    </div>
+    <div class="foot-links">
+     <div class="foot-menu">
+      <h2>BROWSE</h2>
+      <span id="enote" onclick="window.location.href='/enote'"><i class="fa-solid fa-file-signature"></i>Editor's Note</span>
+      <span id="article" onclick="window.location.href='/articles'"><i class="fa-solid fa-file-lines"></i>Articles</span>
+      <span id="paper" onclick="window.location.href='/papers'"><i class="fa-solid fa-book"></i>Papers</span>
+      <span id="about" onclick="window.location.href='/#about'"><i class="fa-solid fa-circle-info"></i>About</span>
+      <span id="connect" onclick="window.location.href='/contact'"><i class="fa-solid fa-link"></i>Connect</span>
+     </div>
+     <div class="foot-menu">
+      <h2>CONTACT</h2>
+      <span onclick="location='mailto:connect.sxs@gmail.com'"><i class="fa-solid fa-envelope"></i>connect.sxs@gmail.com</span>
+      <span onclick=""><i class="fa-solid fa-location-dot"></i>New Delhi, Delhi 110052, India</span>
+      <h2>LEGAL</h2>
+      <span onclick="window.location.href='/privacy'"><i class="fa-solid fa-lock"></i>Privacy Policy</span>
+      <span onclick="window.location.href='/terms'"><i class="fa-solid fa-file-contract"></i>Terms of Use</span>
+     </div>
+    </div>
+    <div class="copyright">
+     <span class="cr-text">© <span id="cr-year">2026</span> SAMAJIK SAMĪKṢĀ • ALL RIGHTS RESERVED</span>
+     <div class="foot-dev">Developed by - <span class="developer" onclick="window.open('https://github.com/shreyanssrivastava', '_blank')"><i class="fa-brands fa-github"></i>shreyanssrivastava</span></div>
+    </div>
+   </footer>
   </body>
 </html>
