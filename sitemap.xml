@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<!-- samajiksamiksa.in - sitemap.xml -->
+<!-- © SAMAJIK SAMĪKṢĀ | All rights reserved -->
+
+  <url>
+    <loc>https://samajiksamiksa.in/</loc>
+    <lastmod>2026-07-25</lastmod>
+  </url>
+
+  <url>
+    <loc>https://samajiksamiksa.in/articles</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+
+  <url>
+    <loc>https://samajiksamiksa.in/privacy</loc>
+    <lastmod>2026-07-23</lastmod>
+  </url>
+
+  <url>
+    <loc>https://samajiksamiksa.in/terms</loc>
+    <lastmod>2026-07-23</lastmod>
+  </url>
+
+  <url>
+    <loc>https://samajiksamiksa.in/#about</loc>
+    <lastmod>2026-08-02</lastmod>
+  </url>
+
+</urlset>

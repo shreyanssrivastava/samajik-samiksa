@@ -1,4 +1,4 @@
-# samajiksamiksa.in robots.txt
+# samajiksamiksa.in - robots.txt
 # © SAMAJIK SAMĪKṢĀ | All rights reserved
 
 User-agent: *
