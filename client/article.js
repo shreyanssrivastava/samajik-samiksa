@@ -393,9 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
             method: "POST",
             body: JSON.stringify({ docId: docName, data: "unlike" })
           })
-          .then((res) => {
-            console.log(res);
-          })
           .catch(err => toast.error(err));
       }      
     });
