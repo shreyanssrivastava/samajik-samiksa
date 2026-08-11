@@ -11,7 +11,7 @@
 
       { "src": "^/article\\.html$", "status": 301, "headers": { "Location": "/article" } },            
       { "src": "^/article/?$", "dest": "/client/articles.html" },
-      { "src": "^/articles/([^\\./]+)$", "dest": "/api/getArt" },
+      { "src": "^/(articles/([^\\./]+)|editors-note/?)$", "dest": "/api/getArt" },
 
       { "src": "^/$", "dest": "/client/index.html" },
       { "src": "^/(.*)\\.html$", "status": 301, "headers": { "Location": "/$1" } },

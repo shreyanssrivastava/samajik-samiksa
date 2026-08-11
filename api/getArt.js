@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   let data = null;
   const url = new URL(req.url, `https://${req.headers.host}`);
   
-  if (url.pathname.split("/")[1] !== "articles") return res.status(405).json({ error: "Unable to process" });
+  if (url.pathname.split("/")[1] === "api") return res.status(405).json({ error: "Unable to process" });
   
   const slug = url.pathname.split("/").pop();
   
@@ -17,12 +17,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    
-    const snap = await db
-    .collection("articles")
-    .where("slug", "==", slug)
-    .where("status", "==", "published")
-    .limit(1).get();
+  
+    let snap = null;
+  
+    if (url.pathname.split("/")[1] === "articles") {
+      snap = await db
+      .collection("articles")
+      .where("slug", "==", slug)
+      .where("status", "==", "published")
+      .limit(1).get();
+    } else {
+        snap = await db
+        .collection("articles")
+        .where("slug", "==", slug)
+        .where("status", "==", "undefined")        
+        .limit(1).get();
+    }
 
     if (snap.empty) {
         data = readFile("client", "404.html");
