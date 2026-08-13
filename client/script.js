@@ -245,6 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
         latSk.forEach(sk => sk.classList.add("hide"));
         latArts.appendChild(card);        
       });
+      
+      if (window.location.hash.slice(1) === "about") secThr.scrollIntoView({ behavior: "smooth" });
      
     } catch (error) {
         console.log(error);
