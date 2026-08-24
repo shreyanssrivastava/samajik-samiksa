@@ -358,25 +358,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
              /*---- ©-Year ----*/
   const crYear = document.getElementById('cr-year');
   const currentYear = new Date().getFullYear();
   crYear.textContent = currentYear;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
