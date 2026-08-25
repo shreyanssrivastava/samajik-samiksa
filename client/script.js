@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       });
       toast.success("Login successful");
-      // window.location.replace('/');
+      window.location.replace('/');
     } catch (error) {
         console.error(error);
         toast.error(error);
