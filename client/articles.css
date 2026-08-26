@@ -55,7 +55,6 @@ img {
 .navbar { 
   display: flex;
   position: sticky;
-  backround: transparent;
   background-color: rgba(9, 9, 9, 0.65);
   backdrop-filter: blur(1.4rem);
   border-bottom: .08rem solid rgba(255,255,255,0.08);
@@ -300,6 +299,7 @@ img {
 .card-body {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.3;
@@ -445,7 +445,6 @@ footer div {
   color:#F8F8F5;
   font-size: 1.1rem;
   line-height: 2rem;
-  font-fmily:"Cormorant Garamond";
   font-family: "Inter", sans-serif;
 }
 .foot-menu span {
