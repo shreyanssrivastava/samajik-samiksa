@@ -284,14 +284,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   account.addEventListener('click', (e) => {
-      if (e.target === account) {
-          account.classList.remove("show");
-          navSubs.classList.remove("active");
-          navSubs.disabled = false;
-          setTimeout(() => accBox.classList.remove("show"), 500);
-      }
+    if (e.target === account) {
+        accBox.classList.remove("show");
+        setTimeout(() => {
+            account.classList.remove("show");
+            navSubs.classList.remove("active");
+            navSubs.disabled = false;
+        }, 500);
+    }
   });
-  
+
   const pfBox = document.getElementById('profile-box');
   const frontBox = document.getElementById('front-box');
   const toggleBtn = document.getElementById('toggle-form');
