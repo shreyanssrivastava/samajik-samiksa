@@ -141,7 +141,14 @@ img {
   color: #ffffff;
   background: transparent;
 }
-
+#login.active {
+  background: #33cccc;
+  border-color: #33cccc;
+}
+#login.active:hover {
+  color: #33cccc;
+  background: transparent;
+}
 
 
 
@@ -641,36 +648,42 @@ footer div {
 #acc-box-bg {
   display: grid;
   position: fixed;
-  z-index: 99998;
+  z-index: 998;
+  opacity: 0;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  top: 8rem;
-  width: 100%;
-  height: calc(100vh - 6.04rem);
+  visibility: hidden;
   place-items: center;
-  backdrop-filter: blur(1rem);
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(.1rem);
   transition: all .5s ease;
-  transform: translateX(100vw);
-  background-color: rgba(42, 48, 58, 0.8);
+  background-color: rgba(0,0,0,.1);
 }
 #acc-box-bg.show {
-  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 #acc-box {
   display: flex;
   position: relative;
-  background: transparent;
+  background: rgba(204,204,204,.5);
   color: #ffffff;
-  margin: 0;
-  padding: 0;  
+  opacity: 0;
+  padding: 4rem 2rem;
   overflow: hidden;
-  border: .08rem solid #fff;
-  border-left: none;
+  border: none;
   border-radius: 2rem;
   align-items: centre;
   justify-content: center;
-  transition: all .6s ease;
+  transition: all .5s ease;
+  transform: translateY(100%);
+}
+#acc-box.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 #front-box {
   display: none;
@@ -693,7 +706,7 @@ footer div {
   left: calc(100% - 20rem);
   border-radius: 5rem 0 0 5rem;
 }
-#acc-box:has(#front-box.move) {
+#ac-box:has(#front-box.move) {
   border-right: none;
   border-left: .08rem solid #fff;
 }
@@ -785,12 +798,10 @@ footer div {
 
 @media (max-width: 768px) {
   #acc-box {
-      border-top: none;
       align-items: stretch;
       justify-content: flex-start;
       flex-direction: column;
       box-sizing: border-box;
-      border-left: .08rem solid #fff;
   }
   #front-box {
       left: unset;

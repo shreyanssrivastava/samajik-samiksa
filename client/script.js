@@ -271,12 +271,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 /*---- Sign In/Up ----*/
   const login = document.getElementById('login');
   const account = document.getElementById('acc-box-bg');
-  
+  const accBox = document.getElementById('acc-box');
+ 
   login.addEventListener('click', () => {
-      account.classList.toggle('show');
+      account.classList.toggle("show");
+      login.classList.toggle("active");
+      setTimeout(() => accBox.classList.toggle("show"), 500);
   });
   
-  const accBox = document.getElementById('acc-box');
   const pfBox = document.getElementById('profile-box');
   const frontBox = document.getElementById('front-box');
   const toggleBtn = document.getElementById('toggle-form');
