@@ -269,22 +269,25 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
                 /*---- Sign In/Up ----*/
-  const login = document.getElementById('login');
+  const navSubs = document.getElementById('nav-subs');
+  const subsBtns = document.querySelectorAll('.subscribe');
   const account = document.getElementById('acc-box-bg');
   const accBox = document.getElementById('acc-box');
  
-  login.addEventListener('click', function () {
-      this.disabled = true;
-      this.classList.add("active");
+  subsBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      navSubs.disabled = true;
+      navSubs.classList.add("active");
       account.classList.add("show");
       setTimeout(() => accBox.classList.add("show"), 500);
+    });
   });
 
   account.addEventListener('click', (e) => {
       if (e.target === account) {
           account.classList.remove("show");
-          login.classList.remove("active");
-          login.disabled = false;
+          navSubs.classList.remove("active");
+          navSubs.disabled = false;
           setTimeout(() => accBox.classList.remove("show"), 500);
       }
   });
