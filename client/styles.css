@@ -134,20 +134,15 @@ img {
   margin-right: .7rem;
   align-items: center;
   background: #fff;
-  border: .05rem solid #fff;
-  transition: all .5s ease;
+  border: none;
+  transition: all .3s ease;
 }
 #login:hover {
-  color: #ffffff;
-  background: transparent;
+  background: #bfbfbf;
 }
 #login.active {
   background: #33cccc;
-  border-color: #33cccc;
-}
-#login.active:hover {
-  color: #33cccc;
-  background: transparent;
+  cursor: not-allowed;
 }
 
 
@@ -678,8 +673,9 @@ footer div {
   border-radius: 2rem;
   align-items: centre;
   justify-content: center;
-  transition: all .5s ease;
+  transition: all .3s ease;
   transform: translateY(100%);
+  box-shadow: 0 .4rem 1.2rem rgba(0, 0, 0, 0.5);
 }
 #acc-box.show {
   opacity: 1;

@@ -273,10 +273,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const account = document.getElementById('acc-box-bg');
   const accBox = document.getElementById('acc-box');
  
-  login.addEventListener('click', () => {
-      account.classList.toggle("show");
-      login.classList.toggle("active");
-      setTimeout(() => accBox.classList.toggle("show"), 500);
+  login.addEventListener('click', function () {
+      this.disabled = true;
+      this.classList.add("active");
+      account.classList.add("show");
+      setTimeout(() => accBox.classList.add("show"), 500);
+  });
+
+  account.addEventListener('click', (e) => {
+      if (e.target === account) {
+          account.classList.remove("show");
+          login.classList.remove("active");
+          login.disabled = false;
+          setTimeout(() => accBox.classList.remove("show"), 500);
+      }
   });
   
   const pfBox = document.getElementById('profile-box');
