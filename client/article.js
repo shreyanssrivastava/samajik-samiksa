@@ -162,10 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const paraIndex = index - 3;
 
+        // paragraph highlighting and scrolling into view
         if (paraIndex >= 0 && paraIndex < this.paragraphs.length) {
             this.paragraphs[paraIndex].classList.add("speaking");
-
-            // Optional auto scroll
             this.paragraphs[paraIndex].scrollIntoView({
                 behavior: "smooth",
                 block: "center"
