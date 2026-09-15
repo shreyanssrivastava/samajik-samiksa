@@ -195,13 +195,6 @@ img {
 }
 
           /*---- main-body ----*/
-@media (min-width: 999px) {
-  .card-contet img {
-      left: 90%;
-      top: 50%;
-      transform: translate(-50%, 0);
-  }
-}
 #sk-wrap, #wrapper {
   width: 100%;
   padding: 0 2rem;
