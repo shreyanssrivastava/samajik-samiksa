@@ -334,8 +334,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(JSON.stringify(user));
         accBox.style.display = 'none';
         pfBox.style.display = 'grid';
+        
     //    login.style.display = 'none';
-  
     //    name.textContent = user.displayName;                                                
     //    email.textContent = user.email;
      
