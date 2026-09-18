@@ -368,7 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
           location.replace('/');
       })
       .catch((error) => {
-          console.log(error);
           toast.error(error);
       });
     });
