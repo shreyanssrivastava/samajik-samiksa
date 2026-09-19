@@ -472,6 +472,4 @@ document.addEventListener('DOMContentLoaded', () => {
       comBox.appendChild(defMsg);
   }
 
-
-
 });
