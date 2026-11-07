@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  loadArts(); // On page open
+  loadArts(); // On page open to UI
   exploreBtn.addEventListener("click", function () {
     this.disabled = true;
     if (lastDoc) loadArts();
