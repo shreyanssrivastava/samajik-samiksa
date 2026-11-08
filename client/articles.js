@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lastDoc) loadArts();
   });  
   
-             /*-- fade-in animation --*/
+             /*-- fade-in animation for article cards --*/
   function fadeIn() {
     const objects = document.querySelectorAll('.osa:not(.animated)');
     const options = { root: null, rootMargin: '0px', threshold: 0.1 };
