@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
          
     } catch (err) {
-        console.log(err);
+        console.log(err); // console errors
     }
   }
 
