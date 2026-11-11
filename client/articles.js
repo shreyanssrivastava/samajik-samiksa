@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     escapeMarkup: false,
     stopOnFocus: true
   };
-
+  
+  // Serve Toasts
   function serveToast(latest) {
     if (snack) snack.hideToast();
     snack = Toastify({
