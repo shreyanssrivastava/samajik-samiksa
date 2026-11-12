@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     stopOnFocus: true
   };
   
-  // Serve Toasts
+  // Serve Toasts on Requests
   function serveToast(latest) {
     if (snack) snack.hideToast();
     snack = Toastify({
