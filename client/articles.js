@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
          
     } catch (err) {
-        console.log(err); // console errors
+        console.log(err); // console errors if function fails
     }
   }
 
