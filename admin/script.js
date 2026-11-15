@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   };
   
+  // Log out
   const logOutBtn = document.getElementById('logout');    
   logOutBtn.addEventListener("click", async () => {
     try {
