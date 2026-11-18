@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   };
   
-  // Log out functioning for admin
+  // Log out functioning for admin panel
   const logOutBtn = document.getElementById('logout');    
   logOutBtn.addEventListener("click", async () => {
     try {
