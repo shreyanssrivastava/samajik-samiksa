@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toast.success("Logging out...")
         location.replace('/');
       } else {
-          toast.error("Something went wrong");
+          toast.error("Something went wrong"); // On any error
       }
     } catch (error) {
         console.log(error);
