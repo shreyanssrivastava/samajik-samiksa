@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const logOutBtn = document.getElementById('logout');    
   logOutBtn.addEventListener("click", async () => {
     try {
-      toast.promise("Processing..."); // When process starts
+      toast.promise("Processing..."); // When process starts then popup visible
       const res = await fetch("/api/killAdmin", { method: "POST" });
       if (res.ok) {
         await signOut(auth);
