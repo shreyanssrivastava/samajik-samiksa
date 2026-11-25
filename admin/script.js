@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     publishContent();
   });
   
-  // Final Publish the article
+  // Final Publish the articles
   async function publishContent() {
   
     try {
