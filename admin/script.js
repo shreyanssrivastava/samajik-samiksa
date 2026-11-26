@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const parser = new DOMParser();
       const data = parser.parseFromString(content, "text/html");
 
-      const para = [...data.querySelectorAll("p")];
+      const para = [...data.querySelectorAll("p")]; // select each para
 
    //   const samiksa = para[0]?.textContent.trim();
    //   const scrutiny = para[1]?.textContent.trim();
