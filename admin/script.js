@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
    //   const samiksa = para[0]?.textContent.trim();
    //   const scrutiny = para[1]?.textContent.trim();
       const desc = para[2]?.textContent.trim(); // select description
-      const title = para[3]?.textContent.trim();
+      const title = para[3]?.textContent.trim(); // select title
       const lastP = para.at(-1)?.textContent.trim();
       
       para.slice(0, 4).forEach(p => p.remove());
